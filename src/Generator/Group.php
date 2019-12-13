@@ -33,9 +33,13 @@ class Group
      * 
      * @return static
      */
-    public static function make()
+    public static function make(?string $legend)
     {
-        return new static(new GroupSchema);
+        $groupSchema = new GroupSchema;
+        if($legend !== null) {
+            $groupSchema->setLegend($legend);
+        }
+        return new static($groupSchema);
     }
 
     /**
