@@ -103,7 +103,7 @@ i.e. ```Field::make(SelectField::class, 'my-select') === Field::select('my-selec
 - [x] Set up the schema and the generators
 - [x] Create the VFG Transformer
 - [x] Add core fields
-- [] Add optional fields
+- [ ] Add optional fields
 
 ## Contributing
 Pull requests are very welcome. For major changes, please open an issue first to discuss what you would like to change.
