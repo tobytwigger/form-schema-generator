@@ -14,14 +14,21 @@ use FormSchema\Schema\Group as GroupSchema;
 class GroupTest extends TestCase
 {
 
-    /** @test */
+    /** 
+     * @test 
+     * @covers \FormSchema\Generator\Group::make
+     */
     public function make_returns_a_group_generator_instance()
     {
         $group = GroupGenerator::make();
         $this->assertInstanceOf(GroupGenerator::class, $group);
     }
 
-    /** @test */
+    /** 
+     * @test
+     * @covers \FormSchema\Generator\Group::make
+     * @covers \FormSchema\Generator\Group::__construct 
+     */
     public function make_passes_a_group_schema_instance_to_the_group_generator()
     {
         $group = GroupGenerator::make();
@@ -31,7 +38,10 @@ class GroupTest extends TestCase
         $this->assertInstanceOf(GroupSchema::class, $groupReflectionProperty->getValue($group));
     }
 
-    /** @test */
+    /** 
+     * @test
+     * @covers \FormSchema\Generator\Group::withField 
+     */
     public function withField_pushes_a_field_schema_to_the_group(){
         $groupSchema = $this->prophesize(GroupSchema::class);
         $fieldSchema = $this->prophesize(FieldSchema::class);
@@ -45,7 +55,10 @@ class GroupTest extends TestCase
     }
 
 
-    /** @test */
+    /** 
+     * @test
+     * @covers \FormSchema\Generator\Group::legend 
+     */
     public function legend_sets_the_legend(){
         $groupSchema = $this->prophesize(GroupSchema::class);
         $groupSchema->setLegend('Test Legend')->shouldBeCalled();
@@ -55,7 +68,10 @@ class GroupTest extends TestCase
     }
 
     
-    /** @test */
+    /** 
+     * @test
+     * @covers \FormSchema\Generator\Group::getSchema 
+     */
     public function getSchema_returns_the_group_instance(){
         $groupSchema = $this->prophesize(GroupSchema::class);
 

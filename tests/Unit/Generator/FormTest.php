@@ -14,14 +14,21 @@ use FormSchema\Schema\Group as GroupSchema;
 class FormTest extends TestCase
 {
 
-    /** @test */
+    /** 
+     * @test
+     * @covers \FormSchema\Generator\Form::make 
+     */
     public function make_returns_a_form_instance()
     {
         $form = FormGenerator::make();
         $this->assertInstanceOf(FormGenerator::class, $form);
     }
 
-    /** @test */
+    /** 
+     * @test
+     * @covers \FormSchema\Generator\Form::make
+     * @covers \FormSchema\Generator\Form::__construct 
+     */
     public function make_passes_a_form_schema_instance_to_the_form_generator()
     {
         $form = FormGenerator::make();
@@ -31,7 +38,10 @@ class FormTest extends TestCase
         $this->assertInstanceOf(FormSchema::class, $formReflectionProperty->getValue($form));
     }
 
-    /** @test */
+    /** 
+     * @test
+     * @covers \FormSchema\Generator\Form::withGroup 
+     */
     public function withGroup_pushes_a_group_schema_to_the_form(){
         $formSchema = $this->prophesize(FormSchema::class);
         $groupSchema = $this->prophesize(GroupSchema::class);
@@ -44,7 +54,10 @@ class FormTest extends TestCase
         $form->withGroup($groupGenerator->reveal());
     }
 
-    /** @test */
+    /** 
+     * @test
+     * @covers \FormSchema\Generator\Form::withField 
+     */
     public function withField_pushes_a_field_schema_to_the_form(){
         $formSchema = $this->prophesize(FormSchema::class);
         $fieldSchema = $this->prophesize(FieldSchema::class);
@@ -57,7 +70,10 @@ class FormTest extends TestCase
         $form->withField($fieldGenerator->reveal());
     }
     
-    /** @test */
+    /** 
+     * @test
+     * @covers \FormSchema\Generator\Form::getSchema 
+     */
     public function getSchema_returns_the_form_instance(){
         $formSchema = $this->prophesize(FormSchema::class);
         
@@ -65,7 +81,10 @@ class FormTest extends TestCase
         $this->assertEquals($formSchema->reveal(), $form->getSchema());
     }
 
-    /** @test */
+    /** 
+     * @test
+     * @covers \FormSchema\Generator\Form::__toString 
+     */
     public function __toString_calls_get_schema_and_casts_to_a_string()
     {
         $formSchema = $this->prophesize(FormSchema::class);

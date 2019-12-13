@@ -4,17 +4,10 @@ namespace FormSchema\Fields;
 
 use FormSchema\Schema\Field;
 
-class InputField extends Field
+class LabelField extends Field
 {
 
-    protected $type = 'input';
-
-    /**
-     * Type of input element
-     *
-     * @var string
-     */
-    protected $inputType;
+    protected $type = 'label';
 
     /**
      * Get any field specific attributes
@@ -23,7 +16,7 @@ class InputField extends Field
      */
     public function getAppendedAttributes(): array
     {
-        return ['inputType' => $this->inputType()];
+        return [];
     }
 
 }
