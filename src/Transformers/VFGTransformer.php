@@ -65,6 +65,8 @@ class VFGTransformer implements Transformer
      */
     public function extractOptions(Form $form)
     {
-        return [];
+        return [
+	    'validateDebounceTime' => 0	
+	];
     }
 }

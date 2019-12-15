@@ -87,10 +87,12 @@ class VFGTransformerTest extends TestCase
      * @test
      * @covers \FormSchema\Transformers\VFGTransformer::extractOptions 
      */
-    public function extractOptions_returns_an_empty_array(){
+    public function extractOptions_returns_an_array(){
         $form = $this->prophesize(Form::class);
         $transformer = new VFGTransformer();
-        $this->assertEquals([], $transformer->extractOptions($form->reveal()));
+        $this->assertEquals([
+	    'validateDebounceTime' => 0	
+	], $transformer->extractOptions($form->reveal()));
     }
     
     /** 
@@ -112,7 +114,9 @@ class VFGTransformerTest extends TestCase
         $this->assertEquals([
             'schema' => ['some' => 'schema'],
             'model' => ['model1' => null, 'model2' => null],
-            'options' => []
+            'options' => [
+	        'validateDebounceTime' => 0	
+	    ]
         ], $transformer->transformToArray($form->reveal()));
     }
 
@@ -135,7 +139,9 @@ class VFGTransformerTest extends TestCase
         $this->assertEquals(json_encode([
             'schema' => ['some' => 'schema'],
             'model' => ['model1' => null, 'model2' => null],
-            'options' => []
+            'options' => [
+	        'validateDebounceTime' => 0	
+	    ]
         ]), $transformer->transformToJson($form->reveal()));
     }
     

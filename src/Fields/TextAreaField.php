@@ -7,7 +7,7 @@ use FormSchema\Schema\Field;
 class TextAreaField extends Field
 {
 
-    protected $type = 'textarea';
+    protected $type = 'textArea';
 
     protected $autocomplete;
     protected $max;
