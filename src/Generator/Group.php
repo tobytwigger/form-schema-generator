@@ -33,7 +33,7 @@ class Group
      * 
      * @return static
      */
-    public static function make(?string $legend)
+    public static function make(?string $legend = null)
     {
         $groupSchema = new GroupSchema;
         if($legend !== null) {

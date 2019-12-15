@@ -9,6 +9,7 @@ use FormSchema\Fields\LabelField;
 use FormSchema\Fields\RadiosField;
 use FormSchema\Fields\SelectField;
 use FormSchema\Fields\SubmitField;
+use FormSchema\Fields\SwitchField;
 use FormSchema\Fields\TextAreaField;
 use FormSchema\Schema\Field as FieldSchema;
 
@@ -164,6 +165,18 @@ class Field
     public static function textArea(string $model)
     {
         return static::make(TextAreaField::class, $model);
+    }
+
+    /**
+     * Create a switch field
+     *
+     * @param string $model
+     * @return Field
+     * @throws \Exception
+     */
+    public static function switch(string $model)
+    {
+        return static::make(SwitchField::class, $model);
     }
 
     /**
