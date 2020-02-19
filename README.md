@@ -99,11 +99,95 @@ To use the Field generator, either call the make() method and pass it the name o
 
 i.e. ```Field::make(SelectField::class, 'my-select') === Field::select('my-select');```
 
+### Field Guide
+
+This section gives a quick summary of each fields possible options. When using the package, you can copy the examples below into your code and delete/modify any fields.
+
+As more fields are added to the package, their example will be put below.
+
+#### Checkbox
+
+A simple checkbox field
+
+```php
+\FormSchema\Generator\Field::checkBox('field_id')->label('Field Label')->featured(true)->required(true)->default(true)->hint('A hint for the field')->help('A more in depth description, shown on a hover over')
+```
+
+#### Checklist
+
+Multiple checkboxes. Optionally allow for a listbox instead of a set of checkboxes.
+
+```php
+\FormSchema\Generator\Field::checkList('field_id')->label('Field Label')->featured(true)->required(true)->default(true)->hint('A hint for the field')->help('A more in depth description, shown on a hover over')->listBox(true)->values([['value' => 1, 'name' => 'Name 1], ...])
+```
+
+
+#### Input
+
+A standard HTML Input field. This field should not be used for buttons, files, images, radios, reset, search or submit types.
+
+```php
+\FormSchema\Generator\Field::input('field_id')->inputType('text')->label('Field Label')->featured(true)->required(true)->default(true)->hint('A hint for the field')->help('A more in depth description, shown on a hover over')
+```
+
+#### Label
+
+A simple field for non-editable values, such as a created time, timestamp etc.
+
+```php
+\FormSchema\Generator\Field::labels('field_id')->label('Field Label')->featured(true)->required(true)->default(true)->hint('A hint for the field')->help('A more in depth description, shown on a hover over')
+```
+
+#### Radios
+
+Radio buttons for single selections
+
+```php
+\FormSchema\Generator\Field::radios('field_id')->label('Field Label')->featured(true)->required(true)->default(true)->hint('A hint for the field')->help('A more in depth description, shown on a hover over')->values([['value' => 1, 'name' => 'Option 1', 'disabled' => false], ...])
+```
+
+#### Select
+
+A single select dropdown
+
+```php
+\FormSchema\Generator\Field::select('field_id')->label('Field Label')->featured(true)->required(true)->default(true)->hint('A hint for the field')->help('A more in depth description, shown on a hover over')->values([['id' => 1, 'name' => 'Option 1'], ...])->selectOptions(['noneSelectedText' => 'Please Select an Option', 'hideNoneSelectedText' => false])
+```
+
+#### Submit
+
+A simple submit button
+
+```php
+\FormSchema\Generator\Field::submit('field_id')->label('Field Label')->featured(true)->required(true)->default(true)->hint('A hint for the field')->help('A more in depth description, shown on a hover over')->buttonText('Submit the Form')
+```
+
+#### Text Area
+
+A text area for large text entries
+
+```php
+\FormSchema\Generator\Field::textArea('field_id')->label('Field Label')->featured(true)->required(true)->default(true)->hint('A hint for the field')->help('A more in depth description, shown on a hover over')->placeholder('A Placeholder')->readonly(false)->rows(3)
+```
+
+#### Switch
+
+A checkbox in the style of a switch.
+
+```php
+\FormSchema\Generator\Field::switch('field_id')->label('Field Label')->featured(true)->required(true)->default(true)->hint('A hint for the field')->help('A more in depth description, shown on a hover over')->textOn('On')->textOff('Off')->valueOn(true)->valueOff(false)
+```
+
 ## Status of the project
 - [x] Set up the schema and the generators
 - [x] Create the VFG Transformer
 - [x] Add core fields
 - [ ] Add optional fields
+- [ ] Add validation
+- [ ] Add conditional disabled status
+- [ ] Add conditional visible status
+- [ ] Add conditional featured status
+- [ ] Integrate optional default values when creating a new model
 
 ## Contributing
 Pull requests are very welcome. For major changes, please open an issue first to discuss what you would like to change.
