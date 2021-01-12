@@ -10,11 +10,12 @@
         }
     ],
     "require": {
-        "php": "~7.2",
-        "ext-json": "*"
+        "php": "^7.3|^8.0",
+        "ext-json": "*",
+        "phpspec/prophecy-phpunit": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "psr-4": {
@@ -25,5 +26,8 @@
         "psr-4": {
             "FormSchema\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always --process-isolation --verbose --configuration phpunit.xml"
     }
 }
