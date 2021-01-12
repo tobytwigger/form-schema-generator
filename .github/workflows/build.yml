@@ -35,8 +35,6 @@ jobs:
 
             - name: Run test suite
               run: composer run-script test
-
-jobs:
     build_php74:
 
         runs-on: ubuntu-latest
@@ -67,8 +65,6 @@ jobs:
 
             - name: Run test suite
               run: composer run-script test
-
-jobs:
     build_php72:
 
         runs-on: ubuntu-latest
