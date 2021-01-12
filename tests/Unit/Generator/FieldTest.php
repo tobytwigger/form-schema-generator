@@ -2,7 +2,7 @@
 
 namespace FormSchema\Tests\Unit\Generator;
 
-use PHPUnit\Framework\TestCase;
+use FormSchema\Tests\TestCase;
 use ReflectionClass;
 use FormSchema\Fields\InputField;
 use FormSchema\Generator\Field as FieldGenerator;
@@ -12,9 +12,9 @@ use FormSchema\Schema\Field as FieldSchema;
 class FieldTest extends TestCase
 {
 
-    /** 
+    /**
      * @test
-     * @covers \FormSchema\Generator\Field::make 
+     * @covers \FormSchema\Generator\Field::make
      */
     public function make_returns_a_field_generator_instance()
     {
@@ -22,7 +22,7 @@ class FieldTest extends TestCase
         $this->assertInstanceOf(FieldGenerator::class, $field);
     }
 
-    /** 
+    /**
      * @test
      * @covers \FormSchema\Generator\Field::make
      * @covers \FormSchema\Generator\Field::__construct
@@ -37,9 +37,9 @@ class FieldTest extends TestCase
         $this->assertInstanceOf(DummyField::class, $fieldReflectionProperty->getValue($field));
     }
 
-    /** 
+    /**
      * @test
-     * @covers \FormSchema\Generator\Field::make 
+     * @covers \FormSchema\Generator\Field::make
      */
     public function make_sets_the_model_on_the_field()
     {
@@ -51,22 +51,22 @@ class FieldTest extends TestCase
         $this->assertEquals('model1', $fieldSchema->getAttribute('model'));
     }
 
-    /** 
-     * @test 
+    /**
+     * @test
      * @covers \FormSchema\Generator\Field::make
      */
     public function make_throws_an_exception_if_the_given_class_does_not_extend_field_schema()
     {
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('The field type must be a class extending FieldSchema, FormSchema\Tests\Unit\Generator\NotAField given');
-        
+
         FieldGenerator::make(NotAField::class, 'model1');
     }
 
 
     /**
      * @test
-     * @covers \FormSchema\Generator\Field::getSchema 
+     * @covers \FormSchema\Generator\Field::getSchema
      */
     public function getSchema_returns_the_field_instance(){
         $fieldSchema = $this->prophesize(FieldSchema::class);
@@ -74,10 +74,10 @@ class FieldTest extends TestCase
         $field = new FieldGenerator($fieldSchema->reveal());
         $this->assertEquals($fieldSchema->reveal(), $field->getSchema());
     }
-    
-    /** 
+
+    /**
      * @test
-     * @covers \FormSchema\Generator\Field::input 
+     * @covers \FormSchema\Generator\Field::input
      */
     public function input_creates_an_input_field(){
         $field = FieldGenerator::input('model1');
@@ -86,10 +86,10 @@ class FieldTest extends TestCase
         $fieldReflectionProperty->setAccessible(true);
         $this->assertInstanceOf(InputField::class, $fieldReflectionProperty->getValue($field));
     }
-    
-    /** 
+
+    /**
      * @test
-     * @covers \FormSchema\Generator\Field::__call 
+     * @covers \FormSchema\Generator\Field::__call
      */
     public function calls_are_forwarded_to_the_field_schema(){
         $fieldSchema = $this->prophesize(DummyField::class);
@@ -98,7 +98,7 @@ class FieldTest extends TestCase
         $fieldSchema->label('cc')->shouldBeCalled();
         $fieldSchema->hint('dd')->shouldBeCalled();
         $fieldSchema->help('ee')->shouldBeCalled();
-        
+
         $field = new FieldGenerator($fieldSchema->reveal());
         $field->model('aa');
         $field->attribute('bb');
@@ -115,9 +115,9 @@ class DummyField extends Field {
     }
 
     protected $type = 'dummy';
-    
+
     public function model($var)
-    {        
+    {
         $this->model = $var;
     }
 
@@ -148,5 +148,5 @@ class DummyField extends Field {
 }
 
 class NotAField {
-    
+
 }

@@ -7,14 +7,14 @@ namespace FormSchema\Tests\Unit\Schema;
 use FormSchema\Schema\Field;
 use FormSchema\Schema\Form;
 use FormSchema\Schema\Group;
-use PHPUnit\Framework\TestCase;
+use FormSchema\Tests\TestCase;
 
 class GroupTest extends TestCase
 {
 
-    /** 
+    /**
      * @test
-     * @covers \FormSchema\Schema\Group::addField 
+     * @covers \FormSchema\Schema\Group::addField
      */
     public function addField_adds_a_field_to_the_group(){
         $group = new Group();
@@ -32,9 +32,9 @@ class GroupTest extends TestCase
         $this->assertEquals([$field1, $field2], $fields);
     }
 
-    /** 
+    /**
      * @test
-     * @covers \FormSchema\Schema\Group::fields 
+     * @covers \FormSchema\Schema\Group::fields
      */
     public function fields_returns_all_fields_for_the_group(){
         $group = new Group();
@@ -46,24 +46,24 @@ class GroupTest extends TestCase
 
         $this->assertEquals([$field1, $field2], $group->fields());
     }
-    
-    /** 
+
+    /**
      * @test
      * @covers \FormSchema\Schema\Group::setLegend
      */
     public function setLegend_sets_the_legend_for_the_group(){
         $group = new Group();
         $group->setLegend('Legend 1');
-        
+
         $groupReflection = new \ReflectionClass(Group::class);
         $legendProperty = $groupReflection->getProperty('legend');
         $legendProperty->setAccessible(true);
         $this->assertEquals('Legend 1', $legendProperty->getValue($group));
     }
-    
-    /** 
+
+    /**
      * @test
-     * @covers \FormSchema\Schema\Group::toArray 
+     * @covers \FormSchema\Schema\Group::toArray
      */
     public function toArray_returns_the_fields_and_the_legend_as_an_array(){
         $field1 = $this->prophesize(Field::class);
@@ -83,9 +83,9 @@ class GroupTest extends TestCase
         ], $group->toArray());
     }
 
-    /** 
+    /**
      * @test
-     * @covers \FormSchema\Schema\Group::toJson 
+     * @covers \FormSchema\Schema\Group::toJson
      */
     public function toJson_returns_the_fields_and_the_legend_as_json(){
         $field1 = $this->prophesize(Field::class);
@@ -105,9 +105,9 @@ class GroupTest extends TestCase
         ]), $group->toJson());
     }
 
-    /** 
+    /**
      * @test
-     * @covers \FormSchema\Schema\Group::__toString 
+     * @covers \FormSchema\Schema\Group::__toString
      */
     public function __toString_returns_the_fields_and_the_legend_as_json(){
         $field1 = $this->prophesize(Field::class);
@@ -126,5 +126,5 @@ class GroupTest extends TestCase
             'fields' => [['key' => 'field1'], ['key' => 'field2']]
         ]), (string) $group);
     }
-    
+
 }
