@@ -5,14 +5,14 @@ namespace FormSchema\Tests\Unit\Schema;
 
 
 use FormSchema\Schema\Field;
-use PHPUnit\Framework\TestCase;
+use FormSchema\Tests\TestCase;
 
 class FieldTest extends TestCase
 {
 
-    /** 
+    /**
      * @test
-     * @covers \FormSchema\Schema\Field::__call 
+     * @covers \FormSchema\Schema\Field::__call
      */
     public function __call_returns_an_attribute_if_function_getAttribute_is_defined(){
         $field = new class extends Field {
@@ -23,13 +23,13 @@ class FieldTest extends TestCase
                 return 'This is a test attribute';
             }
         };
-        
+
         $this->assertEquals('This is a test attribute', $field->testAttribute());
-        
+
     }
-    
-    /** 
-     * @test 
+
+    /**
+     * @test
      * @covers \FormSchema\Schema\Field::__call
      */
     public function __call_returns_an_attribute_if_the_attribute_exists_and_no_function_defined(){
@@ -40,9 +40,9 @@ class FieldTest extends TestCase
 
         $this->assertEquals('This is a test attribute set in a property', $field->testAttribute());
     }
-    
-    /** 
-     * @test 
+
+    /**
+     * @test
      * @covers \FormSchema\Schema\Field::__call
      */
     public function __call_prioritises_the_getAttribute_function_over_the_attribute(){
@@ -58,9 +58,9 @@ class FieldTest extends TestCase
 
         $this->assertEquals('This is a test attribute', $field->testAttribute());
     }
-    
-    /** 
-     * @test 
+
+    /**
+     * @test
      * @covers \FormSchema\Schema\Field::__call
      */
     public function __call_sets_an_attribute_if_a_setAttribute_function_is_defined(){
@@ -75,9 +75,9 @@ class FieldTest extends TestCase
         $field->testAttribute('Test attribute');
         $this->assertEquals('Test attributeSet through function', $field->val );
     }
-    
-    /** 
-     * @test 
+
+    /**
+     * @test
      * @covers \FormSchema\Schema\Field::__call
      */
     public function __call_sets_an_attribute_if_the_attribute_is_defined(){
@@ -88,9 +88,9 @@ class FieldTest extends TestCase
         $field->val('Test attribute');
         $this->assertEquals('Test attribute', $field->val );
     }
-    
-    /** 
-     * @test 
+
+    /**
+     * @test
      * @covers \FormSchema\Schema\Field::__call
      */
     public function __call_prioritises_the_setAttribute_function_over_the_direct_attribute_setting(){
@@ -105,9 +105,9 @@ class FieldTest extends TestCase
         $field->val('Test attribute');
         $this->assertEquals('Test attributeSet through function', $field->val );
     }
-    
-    /** 
-     * @test 
+
+    /**
+     * @test
      * @covers \FormSchema\Schema\Field::toArray
      */
     public function toArray_returns_all_core_fields(){
@@ -207,16 +207,16 @@ class FieldTest extends TestCase
     public function toArray_returns_any_attributes_from_the_field_type(){
         $field = new class extends Field {
             protected $specialFieldSchema;
-            
+
             public function getAppendedAttributes(): array {
                 return [
                     'specialFieldSchema' => $this->specialFieldSchema()
                 ];
             }
         };
-        
+
         $field->specialFieldSchema('somevalue');
-        
+
         $this->assertEquals([
             'specialFieldSchema' => 'somevalue'
         ], $field->toArray());
@@ -268,7 +268,7 @@ class FieldTest extends TestCase
     public function toArray_prioritises_field_attributes_over_additional_fields(){
         $field = new class extends Field {
             protected $testValue;
-            
+
             public function getAppendedAttributes(): array {return [
                 'customField' => $this->testValue
             ];}
@@ -297,6 +297,6 @@ class FieldTest extends TestCase
             'label' => 'testValuefromField',
         ], $field->toArray());
     }
-    
-    
+
+
 }
