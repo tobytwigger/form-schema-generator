@@ -8,15 +8,15 @@ use FormSchema\Schema\Form as FormSchema;
 
 /**
  * Helper to generate a form schema
- * 
+ *
  * @package FormSchema\Generator
  */
 class Form
 {
     /**
      * Holds the form schema instance
-     * 
-     * @var FormSchema 
+     *
+     * @var FormSchema
      */
     private $form;
 
@@ -30,17 +30,27 @@ class Form
 
     /**
      * Create a new instance of the FormGenerator
-     * 
+     *
      * @return static
      */
-    public static function make()
+    public static function make(?string $title = null, ?string $subtitle = null, ?string $description = null)
     {
-        return new static(new FormSchema());
+        $formSchema = new FormSchema();
+        if($title) {
+            $formSchema->setTitle($title);
+        }
+        if($subtitle) {
+            $formSchema->setSubtitle($subtitle);
+        }
+        if($description) {
+            $formSchema->setDescription($description);
+        }
+        return new static($formSchema);
     }
 
     /**
      * Add a group to the form
-     * 
+     *
      * @param Group $group
      * @return $this
      */
@@ -52,19 +62,21 @@ class Form
 
     /**
      * Add an ungrouped field to the form
-     * 
+     *
      * @param Field $field
      * @return $this
      */
     public function withField(FieldGenerator $field)
     {
-        $this->form->addField($field->getSchema());
+        $group = new \FormSchema\Schema\Group();
+        $group->addField($field->getSchema());
+        $this->form->addGroup($group);
         return $this;
     }
 
     /**
      * Automatically return the form as JSON when requested
-     * 
+     *
      * @return string
      */
     public function __toString()
@@ -73,8 +85,8 @@ class Form
     }
 
     /**
-     * Get the underlying schema instance 
-     * 
+     * Get the underlying schema instance
+     *
      * @return FormSchema
      */
     public function getSchema()

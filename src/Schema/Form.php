@@ -10,18 +10,73 @@ class Form {
 
     /**
      * Hold all groups belonging to this form
-     * @var array 
+     * @var array
      */
-    private $groups = [];
+    private array $groups = [];
+
+    private ?string $title = null;
+
+    private ?string $subtitle = null;
+
+    private ?string $description = null;
 
     /**
-     * @var array Hold all fields belonging to this form
+     * @return string|null
      */
-    private $fields = [];
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string|null $title
+     * @return Form
+     */
+    public function setTitle(?string $title): Form
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * @param string|null $subtitle
+     * @return Form
+     */
+    public function setSubtitle(?string $subtitle): Form
+    {
+        $this->subtitle = $subtitle;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string|null $description
+     * @return Form
+     */
+    public function setDescription(?string $description): Form
+    {
+        $this->description = $description;
+        return $this;
+    }
 
     /**
      * Add a group to the form
-     * 
+     *
      * @param Group $group
      */
     public function addGroup(Group $group)
@@ -30,28 +85,8 @@ class Form {
     }
 
     /**
-     * Add a field to the form
-     * 
-     * @param Field $field
-     */
-    public function addField(Field $field)
-    {
-        $this->fields[] = $field;
-    }
-
-    /**
-     * Get all fields belonging to the form
-     * 
-     * @return Field[]
-     */
-    public function fields()
-    {
-        return $this->fields;
-    }
-
-    /**
      * Get all groups belonging to the form
-     * 
+     *
      * @return Group[]
      */
     public function groups()
@@ -61,24 +96,19 @@ class Form {
 
     /**
      * Output the schema representation of this form
-     * 
+     *
      * @return array
      */
     public function toArray()
     {
         return [
-            'fields' => array_map(function(Field $field) {
-                return $field->toArray();
-            }, $this->fields),
-            'groups' => array_map(function(Group $group) {
-                return $group->toArray();
-            }, $this->groups),
+            array_map(fn (Group $group) => $group->toArray(), $this->groups()),
         ];
     }
 
     /**
      * Return the schema representation of the form as a json string
-     * 
+     *
      * @return false|string
      */
     public function toJson()
@@ -88,12 +118,12 @@ class Form {
 
     /**
      * Return the schema representation of the form as a json string
-     * 
+     *
      * @return false|string
      */
     public function __toString()
     {
         return $this->toJson();
     }
-    
+
 }

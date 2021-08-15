@@ -2,239 +2,271 @@
 
 namespace FormSchema\Schema;
 
-/**
- * Represents a field
- *
- * @method null|string type(?string $type) Get/set the field type
- * @method null|string label(?string $type) Get/set the label of the field.
- * @method null|string model(?string $type) Get/set the model of the field. This is the key to refer to the form with
- * @method null|string id(?string $type) Get/set the id attribute of the field
- * @method null|string inputName(?string $type) Get/set the name attribute of the field
- * @method null|bool featured(?bool $type) Get/set if the field is featured
- * @method null|bool visible(?bool $type) Get/set if the field is visible
- * @method null|bool disabled(?bool $type) Get/set if the field is disabled
- * @method null|bool required(?bool $type) Get/set if the field is required
- * @method null|bool multi(?bool $type) Get/set if the field should be visible ONLY if the field is of type multiple
- * @method null|mixed default(?mixed $type) Get/set the default value of the field
- * @method null|string hint(?string $type) Get/set the hint associated with the field
- * @method null|string help(?string $type) Get/set the tooltip help associated with the field
- * @method null|string|array styleClasses(?string|array $type) Get/set the additional style classes to be associated with the field
- * @method null|array buttons(?string $type) Get/set button functions
- * @method null|array attributes(?array $type) Get/set the attributes of the field. These are split into...
- * 
- * @package FormSchema\Schema
- */
 abstract class Field
 {
-
-    /**
-     * Type of field. This should be set in the implementation of the field.
-     * 
-     * @var string
-     */
-    protected $type;
-    
-    /**
-     * Any additional fields to be set on the schema
-     *
-     * @var array
-     */
-    protected $additional = [];
-
-    /**
-     * Label of the field
-     *
-     * @var string
-     */
-    protected $label;
-
-    /**
-     * Key of the field
-     *
-     * @var string
-     */
-    protected $model;
 
     /**
      * ID of the field. Auto generated if not given
      *
      * @var string
      */
-    protected $id;
+    protected string $id;
 
     /**
-     * HTML field name, for use in form submissions
+     * Type of field. This should be set in the implementation of the field.
      *
      * @var string
      */
-    protected $inputName;
+    protected string $type;
 
     /**
-     * is it a featured (bold) field? Can be a function too.
-     * @var
-     */
-    protected $featured;
-
-    /**
-     * if false, field will be hidden. Can be a function too.
+     * Label of the field
      *
-     * @var
+     * @var string
      */
-    protected $visible;
+    protected string $label;
 
     /**
-     * if true, field will be disabled. Can be a function too.
+     * The value of the field
      *
-     * @var
+     * @var mixed
      */
-    protected $disabled;
+    protected $value;
 
     /**
-     * If true, Stylizes the field as required.  Works in conjunction with validators.
+     * if false, field will be hidden.
      *
-     * @var
+     * @var bool
      */
-    protected $required;
+    protected bool $visible;
 
     /**
-     * if true, it will be visible only  if multiple is true in component attributes
+     * If true, field will be disabled.
      *
-     * @var
+     * @var bool
      */
-    protected $multi;
+    protected bool $disabled;
 
     /**
-     * Default value of the field (used when creating a new model)
+     * If true, the field is required
      *
-     * @var
+     * @var bool
      */
-    protected $default;
+    protected bool $required;
 
     /**
      * Show this hint below the field
      *
-     * @var
+     * @var string
      */
-    protected $hint;
+    protected string $hint;
 
     /**
      * Tooltip/Popover triggered by hovering over the question icon before the caption of field. You can use HTML elements too.
      *
-     * @var
+     * @var string
      */
-    protected $help;
+    protected string $tooltip;
 
     /**
-     * Validator for value. It can be an array of functions too.
+     * Any additional fields to be set on the schema
      *
-     * @var
+     * @var array
      */
-    protected $validator;
+    protected array $additional = [];
 
     /**
-     * Amount of time in milliseconds validation waits before checking, refer to validation
-     *
-     * @var int
+     * @return string
      */
-    protected $validateDebounceTime;
-
-
-    /**
-     * Custom CSS style classes. They will be appended to the .from-group
-     *
-     * @var
-     */
-    protected $styleClasses;
-
-    /**
-     * Array of button objects. This is useful if you need some helper function to fill the field. (E.g. generate password, get GPS location..etc)*
-     *
-     * @var
-     */
-    protected $buttons;
-
-    /**
-     * Custom attributes
-     *
-     * The attributes object is broken up into "wrapper", "input" and "label" objects which will attach attributes to the respective HTML element in the component. All VFG Core fields support these, where applicable.
-     * @var
-     */
-    protected $attributes;
-
-    /**
-     * Return the field schema as an array.
-     * 
-     * This function must take into account all core attributes, as well as additional attributes and field specific attributes
-     * 
-     * @return array
-     */
-    public function toArray()
+    public function getId(): string
     {
-        return array_merge(array_filter([
-            'type' => $this->type(),
-            'label' => $this->label(),
-            'model' => $this->model(),
-            'id' => $this->id(),
-            'inputName' => $this->inputName(),
-            'featured' => $this->featured(),
-            'visible' => $this->visible(),
-            'disabled' => $this->disabled(),
-            'required' => $this->required(),
-            'multi' => $this->multi(),
-            'default' => $this->default(),
-            'hint' => $this->hint(),
-            'help' => $this->help(),
-            'styleClasses' => $this->styleClasses(),
-            'buttons' => $this->buttons(),
-            'attributes' => $this->attributes(),
-        ], function ($val) {
-            return !is_null($val);
-        }), $this->additional, array_filter($this->getAppendedAttributes(), function ($val) {
-            return !is_null($val);
-        }));
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     * @return Field
+     */
+    public function setId(string $id): Field
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return Field
+     */
+    public function setType(string $type): Field
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
+
+    /**
+     * @param string $label
+     * @return Field
+     */
+    public function setLabel(string $label): Field
+    {
+        $this->label = $label;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param mixed $value
+     * @return Field
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isVisible(): bool
+    {
+        return $this->visible;
+    }
+
+    /**
+     * @param bool $visible
+     * @return Field
+     */
+    public function setVisible(bool $visible): Field
+    {
+        $this->visible = $visible;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDisabled(): bool
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * @param bool $disabled
+     * @return Field
+     */
+    public function setDisabled(bool $disabled): Field
+    {
+        $this->disabled = $disabled;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRequired(): bool
+    {
+        return $this->required;
+    }
+
+    /**
+     * @param bool $required
+     * @return Field
+     */
+    public function setRequired(bool $required): Field
+    {
+        $this->required = $required;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHint(): string
+    {
+        return $this->hint;
+    }
+
+    /**
+     * @param string $hint
+     * @return Field
+     */
+    public function setHint(string $hint): Field
+    {
+        $this->hint = $hint;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTooltip(): string
+    {
+        return $this->tooltip;
+    }
+
+    /**
+     * @param string $tooltip
+     * @return Field
+     */
+    public function setTooltip(string $tooltip): Field
+    {
+        $this->tooltip = $tooltip;
+        return $this;
     }
 
     /**
      * Get any field specific attributes
-     * 
+     *
      * @return array
      */
     abstract public function getAppendedAttributes(): array;
 
     /**
-     * Set a custom attribute to be included in the field schema
-     * 
-     * @param string $fieldName Name of the attribute 
-     * @param mixed $fieldValue Value of the attribute
+     * Return the field schema as an array.
+     *
+     * This function must take into account all core attributes, as well as additional attributes and field specific attributes
+     *
+     * @return array
      */
-    public function setCustomField(string $fieldName, $fieldValue)
+    public function toArray()
     {
-        $this->additional[$fieldName] = $fieldValue;
-    }
-
-    /**
-     * Dynamic getter or setter of properties
-     * 
-     * @param string $name
-     * @param array $arguments
-     * @return mixed
-     */
-    public function __call($name, $arguments)
-    {
-        if(count($arguments) === 0) {
-            if (method_exists($this, ($method = 'get' . ucfirst($name)))) {
-                return $this->{$method}();
-            } elseif (property_exists($this, $name)) {
-                return $this->{$name};
-            }
-        } elseif(count($arguments) === 1) {
-            if (method_exists($this, ($method = 'set' . ucfirst($name)))) {
-                $this->{$method}(...$arguments);
-            } elseif (property_exists($this, $name)) {
-                $this->{$name} = $arguments[0];
-            }
-        }
-        
+        return array_merge(
+            array_filter([
+                'id' => $this->getId(),
+                'type' => $this->getType(),
+                'label' => $this->getLabel(),
+                'value' => $this->getValue(),
+                'visible' => $this->isVisible(),
+                'disabled' => $this->isDisabled(),
+                'required' => $this->isRequired(),
+                'hint' => $this->getHint(),
+                'tooltip' => $this->getTooltip()
+            ]),
+            array_filter($this->getAppendedAttributes())
+        );
     }
 
 }
