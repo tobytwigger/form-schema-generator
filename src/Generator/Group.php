@@ -74,9 +74,9 @@ class Group
      * @param Field $field
      * @return $this
      */
-    public function withField(Field $field)
+    public function withField(\FormSchema\Schema\Field $field)
     {
-        $this->group->addField($field->getSchema());
+        $this->group->addField($field);
         return $this;
     }
 

@@ -7,11 +7,7 @@ use FormSchema\Schema\Field;
 class RadiosField extends Field
 {
 
-    protected $type = 'radios';
-
-    protected $values;
-
-    protected $radiosOptions;
+    protected array $radios = [];
 
     /**
      * Get any field specific attributes
@@ -21,9 +17,28 @@ class RadiosField extends Field
     public function getAppendedAttributes(): array
     {
         return [
-            'values' => $this->values(),
-            'radiosOptions' => $this->radiosOptions()
+            'radios' => $this->getRadios()
         ];
     }
 
+    public function withOption(string $id, string $text): RadiosField
+    {
+        $this->radios[] = [
+            'id' => $id, 'text' => $text
+        ];
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRadios(): array
+    {
+        return $this->radios;
+    }
+
+    public function getType(): string
+    {
+        return 'radios';
+    }
 }

@@ -4,19 +4,16 @@ namespace FormSchema\Fields;
 
 use FormSchema\Schema\Field;
 
-class LabelField extends Field
+class TextInputField extends Field
 {
 
-    protected $type = 'label';
+    public function getType(): string
+    {
+        return 'text';
+    }
 
-    /**
-     * Get any field specific attributes
-     *
-     * @return array
-     */
     public function getAppendedAttributes(): array
     {
         return [];
     }
-
 }

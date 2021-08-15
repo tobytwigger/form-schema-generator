@@ -4,13 +4,12 @@ namespace FormSchema\Generator;
 
 use FormSchema\Fields\CheckboxField;
 use FormSchema\Fields\CheckListField;
-use FormSchema\Fields\InputField;
-use FormSchema\Fields\LabelField;
+use FormSchema\Fields\FileUploadField;
 use FormSchema\Fields\RadiosField;
 use FormSchema\Fields\SelectField;
-use FormSchema\Fields\SubmitField;
 use FormSchema\Fields\SwitchField;
 use FormSchema\Fields\TextAreaField;
+use FormSchema\Fields\TextInputField;
 use FormSchema\Schema\Field as FieldSchema;
 
 /**
@@ -20,30 +19,16 @@ use FormSchema\Schema\Field as FieldSchema;
  */
 class Field
 {
-    /**
-     * Holds a reference to the field schema model
-     *
-     * @var FieldSchema
-     */
-    private $field;
-
-    /**
-     * @param FieldSchema $field
-     */
-    public function __construct(FieldSchema $field)
-    {
-        $this->field = $field;
-    }
 
     /**
      * Create a new FieldGenerator instance.
      *
      * @param string $fieldType
-     * @param string $model
+     * @param string $id
      * @return Field
      * @throws \Exception
      */
-    public static function make(string $fieldType, string $id)
+    public static function make(string $fieldType, string $id): \FormSchema\Schema\Field
     {
         if(is_subclass_of($fieldType, FieldSchema::class)) {
             $field = new $fieldType;
@@ -51,138 +36,96 @@ class Field
             throw new \Exception(sprintf('The field type must be a class extending FieldSchema, %s given', $fieldType));
         }
         $field->setId($id);
-        return new static($field);
-    }
-
-    /**
-     * Create an input field
-     *
-     * @param string $model
-     * @return Field
-     * @throws \Exception
-     */
-    public static function input(string $model)
-    {
-        return static::make(InputField::class, $model);
+        return $field;
     }
 
     /**
      * Create an checkbox field
      *
-     * @param string $model
+     * @param string $id
      * @return Field
      * @throws \Exception
      */
-    public static function checkBox(string $model)
+    public static function checkBox(string $id): CheckboxField
     {
-        return static::make(CheckboxField::class, $model);
+        return static::make(CheckboxField::class, $id);
     }
 
     /**
      * Create an checklist field
      *
-     * @param string $model
+     * @param string $id
      * @return Field
      * @throws \Exception
      */
-    public static function checkList(string $model)
+    public static function checkList(string $id): CheckListField
     {
-        return static::make(CheckListField::class, $model);
+        return static::make(CheckListField::class, $id);
     }
 
     /**
-     * Create an label field
+     * Create a file upload field
      *
-     * @param string $model
+     * @param string $id
      * @return Field
      * @throws \Exception
      */
-    public static function labels(string $model)
+    public static function fileUpload(string $id): FileUploadField
     {
-        return static::make(LabelField::class, $model);
+        return static::make(FileUploadField::class, $id);
     }
 
     /**
      * Create an radios field
      *
-     * @param string $model
+     * @param string $id
      * @return Field
      * @throws \Exception
      */
-    public static function radios(string $model)
+    public static function radios(string $id): RadiosField
     {
-        return static::make(RadiosField::class, $model);
+        return static::make(RadiosField::class, $id);
     }
 
     /**
      * Create an select field
      *
-     * @param string $model
+     * @param string $id
      * @return Field
      * @throws \Exception
      */
-    public static function select(string $model)
+    public static function select(string $id): SelectField
     {
-        return static::make(SelectField::class, $model);
-    }
-
-    /**
-     * Create an submit field
-     *
-     * @param string $model
-     * @return Field
-     * @throws \Exception
-     */
-    public static function submit(string $model)
-    {
-        return static::make(SubmitField::class, $model);
-    }
-
-    /**
-     * Create an textarea field
-     *
-     * @param string $model
-     * @return Field
-     * @throws \Exception
-     */
-    public static function textArea(string $model)
-    {
-        return static::make(TextAreaField::class, $model);
+        return static::make(SelectField::class, $id);
     }
 
     /**
      * Create a switch field
      *
-     * @param string $model
+     * @param string $id
      * @return Field
      * @throws \Exception
      */
-    public static function switch(string $model)
+    public static function switch(string $id): SwitchField
     {
-        return static::make(SwitchField::class, $model);
+        return static::make(SwitchField::class, $id);
     }
 
     /**
-     * Dynamically forward method calls to the schema object
+     * Create an textarea field
      *
-     * @param string $name
-     * @param array $arguments
-     * @return $this Allow for method chaining
+     * @param string $id
+     * @return Field
+     * @throws \Exception
      */
-    public function __call($name, $arguments)
+    public static function textArea(string $id): TextAreaField
     {
-        $this->field->{$name}($arguments[0]);
-        return $this;
+        return static::make(TextAreaField::class, $id);
     }
 
-    /**
-     * Get the underlying field schema object
-     *
-     * @return FieldSchema
-     */
-    public function getSchema()
+    public static function textInput(string $id): TextInputField
     {
-        return $this->field;
+        return static::make(TextInputField::class, $id);
     }
 
 }

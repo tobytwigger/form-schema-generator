@@ -13,60 +13,53 @@ abstract class Field
     protected string $id;
 
     /**
-     * Type of field. This should be set in the implementation of the field.
-     *
-     * @var string
-     */
-    protected string $type;
-
-    /**
      * Label of the field
      *
      * @var string
      */
-    protected string $label;
+    protected ?string $label = null;
 
     /**
      * The value of the field
      *
      * @var mixed
      */
-    protected $value;
+    protected $value = null;
 
     /**
      * if false, field will be hidden.
      *
      * @var bool
      */
-    protected bool $visible;
+    protected bool $visible = true;
 
     /**
      * If true, field will be disabled.
      *
      * @var bool
      */
-    protected bool $disabled;
+    protected bool $disabled = false;
 
     /**
      * If true, the field is required
      *
      * @var bool
      */
-    protected bool $required;
+    protected bool $required = false;
 
     /**
      * Show this hint below the field
      *
      * @var string
      */
-    protected string $hint;
+    protected ?string $hint = null;
 
     /**
      * Tooltip/Popover triggered by hovering over the question icon before the caption of field. You can use HTML elements too.
      *
      * @var string
      */
-    protected string $tooltip;
+    protected ?string $tooltip = null;
 
     /**
      * Any additional fields to be set on the schema
@@ -85,9 +78,9 @@ abstract class Field
 
     /**
      * @param string $id
-     * @return Field
+     * @return self
      */
-    public function setId(string $id): Field
+    public function setId(string $id): self
     {
         $this->id = $id;
         return $this;
@@ -96,34 +89,21 @@ abstract class Field
     /**
      * @return string
      */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     * @return Field
-     */
-    public function setType(string $type): Field
-    {
-        $this->type = $type;
-        return $this;
-    }
+    abstract public function getType(): string;
 
     /**
      * @return string
      */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
 
     /**
      * @param string $label
-     * @return Field
+     * @return self
      */
-    public function setLabel(string $label): Field
+    public function setLabel(string $label): self
     {
         $this->label = $label;
         return $this;
@@ -139,7 +119,7 @@ abstract class Field
 
     /**
      * @param mixed $value
-     * @return Field
+     * @return self
      */
     public function setValue($value)
     {
@@ -157,9 +137,9 @@ abstract class Field
 
     /**
      * @param bool $visible
-     * @return Field
+     * @return self
      */
-    public function setVisible(bool $visible): Field
+    public function setVisible(bool $visible): self
     {
         $this->visible = $visible;
         return $this;
@@ -175,9 +155,9 @@ abstract class Field
 
     /**
      * @param bool $disabled
-     * @return Field
+     * @return self
      */
-    public function setDisabled(bool $disabled): Field
+    public function setDisabled(bool $disabled): self
     {
         $this->disabled = $disabled;
         return $this;
@@ -193,45 +173,45 @@ abstract class Field
 
     /**
      * @param bool $required
-     * @return Field
+     * @return self
      */
-    public function setRequired(bool $required): Field
+    public function setRequired(bool $required): self
     {
         $this->required = $required;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getHint(): string
+    public function getHint(): ?string
     {
         return $this->hint;
     }
 
     /**
      * @param string $hint
-     * @return Field
+     * @return self
      */
-    public function setHint(string $hint): Field
+    public function setHint(string $hint): self
     {
         $this->hint = $hint;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTooltip(): string
+    public function getTooltip(): ?string
     {
         return $this->tooltip;
     }
 
     /**
      * @param string $tooltip
-     * @return Field
+     * @return self
      */
-    public function setTooltip(string $tooltip): Field
+    public function setTooltip(string $tooltip): self
     {
         $this->tooltip = $tooltip;
         return $this;
@@ -254,7 +234,7 @@ abstract class Field
     public function toArray()
     {
         return array_merge(
-            array_filter([
+            [
                 'id' => $this->getId(),
                 'type' => $this->getType(),
                 'label' => $this->getLabel(),
@@ -264,8 +244,8 @@ abstract class Field
                 'required' => $this->isRequired(),
                 'hint' => $this->getHint(),
                 'tooltip' => $this->getTooltip()
-            ]),
-            array_filter($this->getAppendedAttributes())
+            ],
+            $this->getAppendedAttributes()
         );
     }
 

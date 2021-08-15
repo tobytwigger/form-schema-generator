@@ -7,13 +7,7 @@ use FormSchema\Schema\Field;
 class CheckListField extends Field
 {
 
-    protected $type = 'checklist';
-
-    protected $listBox;
-
-    protected $values;
-
-    protected $checklistOptions;
+    protected array $checklists = [];
 
     /**
      * Get any field specific attributes
@@ -23,10 +17,28 @@ class CheckListField extends Field
     public function getAppendedAttributes(): array
     {
         return [
-            'listBox' => $this->listBox(),
-            'values' => $this->values(),
-            'checklistOptions' => $this->checklistOptions()
+            'checklists' => $this->getChecklists()
         ];
     }
 
+    public function withOption(string $id, string $text): CheckListField
+    {
+        $this->checklists[] = [
+            'id' => $id, 'text' => $text
+        ];
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getChecklists(): array
+    {
+        return $this->checklists;
+    }
+
+    public function getType(): string
+    {
+        return 'checklist';
+    }
 }

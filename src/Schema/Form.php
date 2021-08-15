@@ -102,7 +102,10 @@ class Form {
     public function toArray()
     {
         return [
-            array_map(fn (Group $group) => $group->toArray(), $this->groups()),
+            'title' => $this->getTitle(),
+            'subtitle' => $this->getSubtitle(),
+            'description' => $this->getDescription(),
+            'groups' => array_map(fn (Group $group) => $group->toArray(), $this->groups()),
         ];
     }
 

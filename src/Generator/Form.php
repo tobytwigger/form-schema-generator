@@ -63,13 +63,13 @@ class Form
     /**
      * Add an ungrouped field to the form
      *
-     * @param Field $field
+     * @param \FormSchema\Schema\Field $field
      * @return $this
      */
-    public function withField(FieldGenerator $field)
+    public function withField(\FormSchema\Schema\Field $field)
     {
         $group = new \FormSchema\Schema\Group();
-        $group->addField($field->getSchema());
+        $group->addField($field);
         $this->form->addGroup($group);
         return $this;
     }

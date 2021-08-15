@@ -30,7 +30,8 @@ class PortalUiKitTransformer implements Transformer
     public function transformToArray(Form $form): array
     {
         return [
-            'schema' => $form->toArray(),
+            'form' => $form->toArray(),
+            'groupFormat' => 'single'
         ];
     }
 }

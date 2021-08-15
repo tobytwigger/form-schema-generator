@@ -7,11 +7,7 @@ use FormSchema\Schema\Field;
 class SelectField extends Field
 {
 
-    protected $type = 'select';
-
-    protected $values;
-
-    protected $selectOptions;
+    protected array $selectOptions = [];
 
     /**
      * Get any field specific attributes
@@ -21,10 +17,28 @@ class SelectField extends Field
     public function getAppendedAttributes(): array
     {
         return [
-            'listBox' => $this->listBox(),
-            'values' => $this->values(),
-            'selectOptions' => $this->selectOptions()
+            'selectOptions' => $this->getSelectOptions()
         ];
     }
 
+    public function withOption(string $id, string $value): SelectField
+    {
+        $this->selectOptions[] = [
+            'id' => $id, 'value' => $value
+        ];
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSelectOptions(): array
+    {
+        return $this->selectOptions;
+    }
+
+    public function getType(): string
+    {
+        return 'select';
+    }
 }
