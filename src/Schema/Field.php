@@ -62,13 +62,6 @@ abstract class Field
     protected ?string $tooltip = null;
 
     /**
-     * Any additional fields to be set on the schema
-     *
-     * @var array
-     */
-    protected array $additional = [];
-
-    /**
      * @return string
      */
     public function getId(): string
