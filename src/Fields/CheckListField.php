@@ -29,6 +29,12 @@ class CheckListField extends Field
         return $this;
     }
 
+    public function setOptions(array $options)
+    {
+        $this->checklists = $options;
+        return $this;
+    }
+
     /**
      * @return array
      */

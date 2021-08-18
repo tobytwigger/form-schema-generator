@@ -5,9 +5,11 @@ namespace FormSchema\Generator;
 use FormSchema\Fields\CheckboxField;
 use FormSchema\Fields\CheckListField;
 use FormSchema\Fields\FileUploadField;
+use FormSchema\Fields\NumberField;
 use FormSchema\Fields\RadiosField;
 use FormSchema\Fields\SelectField;
 use FormSchema\Fields\SwitchField;
+use FormSchema\Fields\TagField;
 use FormSchema\Fields\TextAreaField;
 use FormSchema\Fields\TextInputField;
 use FormSchema\Schema\Field as FieldSchema;
@@ -127,5 +129,16 @@ class Field
     {
         return static::make(TextInputField::class, $id);
     }
+
+    public static function tags(string $id): TagField
+    {
+        return static::make(TagField::class, $id);
+    }
+
+    public static function number(string $id): NumberField
+    {
+        return static::make(NumberField::class, $id);
+    }
+
 
 }
