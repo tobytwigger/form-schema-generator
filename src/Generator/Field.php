@@ -2,6 +2,7 @@
 
 namespace FormSchema\Generator;
 
+use BristolSU\Module\StaticPage\VueFields\HtmlField;
 use FormSchema\Fields\CheckboxField;
 use FormSchema\Fields\CheckListField;
 use FormSchema\Fields\FileUploadField;
@@ -140,5 +141,9 @@ class Field
         return static::make(NumberField::class, $id);
     }
 
+    public static function html(string $id): HtmlField
+    {
+        return static::make(HtmlField::class, $id);
+    }
 
 }
