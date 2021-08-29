@@ -13,6 +13,7 @@ use FormSchema\Fields\SwitchField;
 use FormSchema\Fields\TagField;
 use FormSchema\Fields\TextAreaField;
 use FormSchema\Fields\TextInputField;
+use FormSchema\Fields\EmailField;
 use FormSchema\Schema\Field as FieldSchema;
 
 /**
@@ -144,6 +145,16 @@ class Field
     public static function html(string $id): HtmlField
     {
         return static::make(HtmlField::class, $id);
+    }
+
+    public static function text(string $id): TextInputField
+    {
+        return static::make(TextInputField::class, $id);
+    }
+
+    public static function email(string $id): EmailField
+    {
+        return static::make(EmailField::class, $id);
     }
 
 }
