@@ -33,11 +33,15 @@ class SelectField extends Field
         ];
     }
 
-    public function withOption(string $id, string $value): SelectField
+    public function withOption(string $id, string $value, ?string $group = null): SelectField
     {
-        $this->selectOptions[] = [
-            'id' => $id, 'value' => $value
-        ];
+        $option = ['id' => $id, 'value' => $value];
+        if($group !== null) {
+            $option['group'] = $group;
+        }
+
+        $this->selectOptions[] = $option;
+
         return $this;
     }
 
