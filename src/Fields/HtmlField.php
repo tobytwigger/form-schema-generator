@@ -1,6 +1,6 @@
 <?php
 
-namespace BristolSU\Module\StaticPage\VueFields;
+namespace FormSchema\Fields;
 
 use FormSchema\Schema\Field;
 

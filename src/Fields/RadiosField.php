@@ -29,6 +29,12 @@ class RadiosField extends Field
         return $this;
     }
 
+    public function setOptions(array $options): RadiosField
+    {
+        $this->radios = $options;
+        return $this;
+    }
+
     /**
      * @return array
      */

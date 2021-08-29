@@ -11,6 +11,12 @@ class SelectField extends Field
 
     protected bool $multiple = false;
 
+    protected string $nullLabel = '';
+
+    protected ?string $nullValue = null;
+
+    protected bool $showNullOption = false;
+
     /**
      * Get any field specific attributes
      *
@@ -20,7 +26,10 @@ class SelectField extends Field
     {
         return [
             'selectOptions' => $this->getSelectOptions(),
-            'multiple' => $this->isMultiple()
+            'multiple' => $this->isMultiple(),
+            'nullLabel' => $this->nullLabel,
+            'nullValue' => $this->nullValue,
+            'showNullOption' => $this->showNullOption
         ];
     }
 
@@ -66,6 +75,14 @@ class SelectField extends Field
     public function setMultiple(bool $multiple): SelectField
     {
         $this->multiple = $multiple;
+        return $this;
+    }
+
+    public function withNullOption(string $text, ?string $value): SelectField
+    {
+        $this->showNullOption = true;
+        $this->nullValue = $value;
+        $this->nullLabel = $text;
         return $this;
     }
 

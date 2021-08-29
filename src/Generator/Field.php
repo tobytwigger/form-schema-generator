@@ -2,10 +2,10 @@
 
 namespace FormSchema\Generator;
 
-use BristolSU\Module\StaticPage\VueFields\HtmlField;
 use FormSchema\Fields\CheckboxField;
 use FormSchema\Fields\CheckListField;
 use FormSchema\Fields\FileUploadField;
+use FormSchema\Fields\HtmlField;
 use FormSchema\Fields\NumberField;
 use FormSchema\Fields\RadiosField;
 use FormSchema\Fields\SelectField;
