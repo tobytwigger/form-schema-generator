@@ -78,7 +78,7 @@ class SelectField extends Field
         return $this;
     }
 
-    public function withNullOption(string $text, ?string $value): SelectField
+    public function withNullOption(string $text = '', ?string $value = null): SelectField
     {
         $this->showNullOption = true;
         $this->nullValue = $value;
