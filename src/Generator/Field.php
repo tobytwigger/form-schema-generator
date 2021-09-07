@@ -2,6 +2,7 @@
 
 namespace FormSchema\Generator;
 
+use FormSchema\Fields\ArrayField;
 use FormSchema\Fields\CheckboxField;
 use FormSchema\Fields\CheckListField;
 use FormSchema\Fields\FileUploadField;
@@ -77,6 +78,18 @@ class Field
     public static function fileUpload(string $id): FileUploadField
     {
         return static::make(FileUploadField::class, $id);
+    }
+
+    /**
+     * Create an array field, used for creating arrays of strings
+     *
+     * @param string $id
+     * @return ArrayField
+     * @throws \Exception
+     */
+    public static function array(string $id): ArrayField
+    {
+        return static::make(ArrayField::class, $id);
     }
 
     /**
