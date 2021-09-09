@@ -62,6 +62,13 @@ abstract class Field
     protected ?string $tooltip = null;
 
     /**
+     * The key of the error to pick up
+     *
+     * @var string|null
+     */
+    protected ?string $errorKey = null;
+
+    /**
      * @return string
      */
     public function getId(): string
@@ -211,6 +218,24 @@ abstract class Field
     }
 
     /**
+     * @return string|null
+     */
+    public function getErrorKey(): ?string
+    {
+        return $this->errorKey;
+    }
+
+    /**
+     * @param string|null $errorKey
+     * @return Field
+     */
+    public function setErrorKey(?string $errorKey): self
+    {
+        $this->errorKey = $errorKey;
+        return $this;
+    }
+
+    /**
      * Get any field specific attributes
      *
      * @return array
@@ -236,7 +261,8 @@ abstract class Field
                 'disabled' => $this->isDisabled(),
                 'required' => $this->isRequired(),
                 'hint' => $this->getHint(),
-                'tooltip' => $this->getTooltip()
+                'tooltip' => $this->getTooltip(),
+                'errorKey' => $this->getErrorKey()
             ],
             $this->getAppendedAttributes()
         );
