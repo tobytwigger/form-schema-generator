@@ -112,7 +112,11 @@ class FieldTest extends TestCase
      */
     public function toArray_returns_all_core_fields(){
         $field = new class extends Field {
-            protected $type = 'type1';
+            public function getType(): string
+            {
+                return 'dummy';
+            }
+
             protected $label = 'label1';
             protected $model = 'model1';
             protected $id = 'id1';
@@ -191,6 +195,11 @@ class FieldTest extends TestCase
      */
     public function toArray_returns_any_additional_set_fields(){
         $field = new class extends Field {
+            public function getType(): string
+            {
+                return 'dummy';
+            }
+
             public function getAppendedAttributes(): array {return [];}
         };
         $field->setCustomField('someAdditionalField', 'FieldValue');
@@ -207,6 +216,11 @@ class FieldTest extends TestCase
     public function toArray_returns_any_attributes_from_the_field_type(){
         $field = new class extends Field {
             protected $specialFieldSchema;
+
+            public function getType(): string
+            {
+                return 'dummy';
+            }
 
             public function getAppendedAttributes(): array {
                 return [
@@ -252,6 +266,11 @@ class FieldTest extends TestCase
      */
     public function toArray_prioritises_additional_fields_over_the_core_fields(){
         $field = new class extends Field {
+            public function getType(): string
+            {
+                return 'dummy';
+            }
+
             public function getAppendedAttributes(): array {return [];}
         };
         $field->label('SomeInitialLabel');
@@ -268,6 +287,11 @@ class FieldTest extends TestCase
     public function toArray_prioritises_field_attributes_over_additional_fields(){
         $field = new class extends Field {
             protected $testValue;
+
+            public function getType(): string
+            {
+                return 'dummy';
+            }
 
             public function getAppendedAttributes(): array {return [
                 'customField' => $this->testValue
@@ -287,6 +311,11 @@ class FieldTest extends TestCase
     public function toArray_prioritises_field_attributes_over_core_fields(){
         $field = new class extends Field {
             protected $label;
+
+            public function getType(): string
+            {
+                return 'dummy';
+            }
 
             public function getAppendedAttributes(): array {return [
                 'label' => $this->label . 'fromField'

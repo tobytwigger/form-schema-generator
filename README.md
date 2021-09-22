@@ -1,6 +1,6 @@
 # Form Schema Generator
 
-A small library for working with form schemas. Designed predominantly around the [vue-form-generator](https://github.com/vue-generators/vue-form-generator) package, easily create schemas using a fluent PHP Api.
+A small library for working with form schemas. Designed predominantly around the [portal-ui-kit](https://github.com/bristol-su/portal-ui-kit) package, easily create schemas using a fluent PHP Api.
 
 ## Installation
 
@@ -30,10 +30,9 @@ $group = new Group;
 $group->setLegend('User Details');
 
 # Create a field
-$field = new InputField;
-$field->model('username');
-$field->inputType('text');
-$field->label('Your Username');
+$field = new TextInputField;
+$field->setId('username');
+$field->setLabel('Your Username');
 
 # Tie the schemas together
 $group->addField($field);
@@ -59,7 +58,7 @@ echo $form;
 
 All core fields are offered as field types, the full list can be found in the ```FormSchema\Fields``` namespace. Custom fields can also be added.
 
-To get the exact schema for the vue-form-generator package, use the ```\FormSchema\Transformers\VFGTransformer``` class. Calling the transformToArray or transformToJson methods, passing in a form schema, will return an array with the ```'schema', 'options' and 'model'``` keys.
+To get the exact schema for the vue-form-generator package, use the ```\FormSchema\Transformers\Transformer``` class. Calling the transformToArray or transformToJson methods, passing in a form schema, will return an array set up for the renderer.
 
 ### Using the fluent API
 
@@ -70,9 +69,9 @@ use \FormSchema\Generators\Form;
 use \FormSchema\Generators\Group;
 use \FormSchema\Generators\Field;
 
-echo Form::make()->withGroup(
-    Group::make()->legend('User Details')->withField(
-        Field::input('username')->label('Your Username')->inputType('text')
+echo Form::make('Title', 'Subtitle', 'Description')->withGroup(
+    Group::make('Title', 'Subtitle')->->withField(
+        Field::textInput('username')->label('Your Username')
     )
 );
 
@@ -104,6 +103,8 @@ i.e. ```Field::make(SelectField::class, 'my-select') === Field::select('my-selec
 This section gives a quick summary of each fields possible options. When using the package, you can copy the examples below into your code and delete/modify any fields.
 
 As more fields are added to the package, their example will be put below.
+
+The API for this is the old API, please see the code and above for the updated API.
 
 #### Checkbox
 

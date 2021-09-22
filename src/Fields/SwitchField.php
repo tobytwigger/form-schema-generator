@@ -7,12 +7,9 @@ use FormSchema\Schema\Field;
 class SwitchField extends Field
 {
 
-    protected $type = 'switch';
+    protected string $onText = 'On';
 
-    protected $textOn;
-    protected $textOff;
-    protected $valueOn;
-    protected $valueOff;
+    protected string $offText = 'Off';
 
     /**
      * Get any field specific attributes
@@ -22,11 +19,49 @@ class SwitchField extends Field
     public function getAppendedAttributes(): array
     {
         return [
-            'textOn' => $this->textOn(),
-            'textOff' => $this->textOff(),
-            'valueOn' => $this->valueOn(),
-            'valueOff' => $this->valueOff
+            'onText' => $this->getOnText(),
+            'offText' => $this->getOffText()
         ];
     }
 
+    /**
+     * @return string
+     */
+    public function getOnText(): string
+    {
+        return $this->onText;
+    }
+
+    /**
+     * @param string $onText
+     * @return SwitchField
+     */
+    public function setOnText(string $onText): SwitchField
+    {
+        $this->onText = $onText;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOffText(): string
+    {
+        return $this->offText;
+    }
+
+    /**
+     * @param string $offText
+     * @return SwitchField
+     */
+    public function setOffText(string $offText): SwitchField
+    {
+        $this->offText = $offText;
+        return $this;
+    }
+
+    public function getType(): string
+    {
+        return 'switch';
+    }
 }

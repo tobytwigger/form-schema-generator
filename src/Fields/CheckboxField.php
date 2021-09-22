@@ -7,15 +7,6 @@ use FormSchema\Schema\Field;
 class CheckboxField extends Field
 {
 
-    protected $type = 'checkbox';
-
-    /**
-     * Can the checkbox be autocompleted by the browser?
-     * 
-     * @var bool
-     */
-    protected $autoComplete;
-    
     /**
      * Get any field specific attributes
      *
@@ -23,7 +14,11 @@ class CheckboxField extends Field
      */
     public function getAppendedAttributes(): array
     {
-        return ['autocomplete' => $this->autoComplete()];
+        return [];
     }
 
+    public function getType(): string
+    {
+        return 'checkbox';
+    }
 }
