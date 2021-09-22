@@ -171,6 +171,11 @@ class FormTest extends TestCase
 
 class DummyField extends Field {
 
+    public function getType(): string
+    {
+        return 'dummy';
+    }
+
     public function getAppendedAttributes(): array
     {
         return [];

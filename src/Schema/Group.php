@@ -4,7 +4,7 @@ namespace FormSchema\Schema;
 
 /**
  * Represents a group of fields
- * 
+ *
  * @package FormSchema\Schema
  */
 class Group
@@ -12,21 +12,28 @@ class Group
 
     /**
      * Holds the fields belonging to this group
-     * 
+     *
      * @var Field[]
      */
-    private $fields = [];
+    private array $fields = [];
 
     /**
-     * Holds the legend for the group
-     * 
+     * Holds the title for the group
+     *
      * @var string
      */
-    private $legend;
+    private ?string $title = null;
+
+    /**
+     * Holds the subtitle for the group
+     *
+     * @var string
+     */
+    private ?string $subtitle = null;
 
     /**
      * Add a field to the group
-     * 
+     *
      * @param Field $field
      */
     public function addField(Field $field)
@@ -36,7 +43,7 @@ class Group
 
     /**
      * Get all fields belonging to the group
-     * 
+     *
      * @return Field[]
      */
     public function fields()
@@ -45,18 +52,44 @@ class Group
     }
 
     /**
-     * Set the legend of the group
-     * 
-     * @param string $legend
+     * @return string
      */
-    public function setLegend(string $legend = '')
+    public function getTitle(): ?string
     {
-        $this->legend = $legend;
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     * @return Group
+     */
+    public function setTitle(string $title): Group
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * @param string $subtitle
+     * @return Group
+     */
+    public function setSubtitle(string $subtitle): Group
+    {
+        $this->subtitle = $subtitle;
+        return $this;
     }
 
     /**
      * Return a schema representation of the group as a json string
-     * 
+     *
      * @return false|string
      */
     public function __toString()
@@ -66,7 +99,7 @@ class Group
 
     /**
      * Return a schema representation of the group as a json string
-     * 
+     *
      * @return false|string
      */
     public function toJson()
@@ -76,19 +109,16 @@ class Group
 
     /**
      * Return a schema representation of the group as an array
-     * 
+     *
      * @return array
      */
     public function toArray()
     {
         return array_filter([
-            'legend' => $this->legend,
-            'fields' => array_map(function(Field $field) {
-                return $field->toArray();
-            }, $this->fields)
-        ], function ($val) {
-            return !is_null($val);
-        });
+            'title' => $this->getTitle(),
+            'subtitle' => $this->getSubtitle(),
+            'fields' => array_map(fn (Field $field) => $field->toArray(), $this->fields())
+        ]);
 
     }
 
