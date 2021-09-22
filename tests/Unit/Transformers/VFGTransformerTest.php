@@ -154,6 +154,11 @@ class DummyField extends Field {
         return [];
     }
 
+    public function getType(): string
+    {
+        return 'dummy';
+    }
+
     public function model()
     {
 

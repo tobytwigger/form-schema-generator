@@ -114,8 +114,6 @@ class DummyField extends Field {
         return $this->{$name};
     }
 
-    protected $type = 'dummy';
-
     public function model($var)
     {
         $this->model = $var;
@@ -144,6 +142,11 @@ class DummyField extends Field {
     public function getAppendedAttributes(): array
     {
         return [];
+    }
+
+    public function getType(): string
+    {
+        return 'dummy';
     }
 }
 
