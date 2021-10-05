@@ -37,8 +37,11 @@ class Field
     {
         if(is_subclass_of($fieldType, FieldSchema::class)) {
             $field = new $fieldType;
-        } else {
-            throw new \Exception(sprintf('The field type must be a class extending FieldSchema, %s given', $fieldType));
+        } elseif(count(config('form-schema.components.valid', [])) > 0 && !in_array($fieldType, config('form-schema.components.valid', []))) {
+            throw new \Exception(sprintf('The anonymous field [%s] is not allowed', $fieldType));
+        }
+        else {
+            throw new \Exception(sprintf('The field type must be a class extending FieldSchema or a whitelisted anonymous component, %s given', $fieldType));
         }
         $field->setId($id);
         return $field;
