@@ -68,6 +68,8 @@ abstract class Field
      */
     protected ?string $errorKey = null;
 
+    protected array $options = [];
+
     /**
      * @return string
      */
@@ -241,5 +243,20 @@ abstract class Field
      * @return array
      */
     abstract public function getAppendedAttributes(): array;
+
+    public function withOption(string $key, $value): void
+    {
+        $this->options[$key] = $value;
+    }
+
+    public function hasOptions(): bool
+    {
+        return count($this->options) > 0;
+    }
+
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
 
 }
