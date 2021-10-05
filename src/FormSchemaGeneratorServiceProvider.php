@@ -9,11 +9,11 @@ class FormSchemaGeneratorServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->publishes([__DIR__ . '../config/form-schema.php' => config_path('form-schema.php'),
+        $this->publishes([__DIR__ . '/../config/form-schema.php' => config_path('form-schema.php'),
         ], ['form-schema', 'config']);
 
         $this->mergeConfigFrom(
-            __DIR__ . '../config/form-schema.php',
+            __DIR__ . '/../config/form-schema.php',
             'form-schema'
         );
     }
