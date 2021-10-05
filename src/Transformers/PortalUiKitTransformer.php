@@ -63,7 +63,8 @@ class PortalUiKitTransformer implements Transformer
                 'tooltip' => $field->getTooltip(),
                 'errorKey' => $field->getErrorKey()
             ],
-            $field->getAppendedAttributes()
+            $field->getAppendedAttributes(),
+            $field->getOptions()
         );
     }
 }
