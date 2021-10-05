@@ -2,10 +2,16 @@
 
 namespace FormSchema;
 
+use FormSchema\Transformers\TransformerManager;
 use Illuminate\Support\ServiceProvider;
 
 class FormSchemaGeneratorServiceProvider extends ServiceProvider
 {
+
+    public function register()
+    {
+        $this->app->singleton(TransformerManager::class);
+    }
 
     public function boot()
     {

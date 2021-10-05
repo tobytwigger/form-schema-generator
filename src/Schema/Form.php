@@ -3,6 +3,7 @@
 namespace FormSchema\Schema;
 
 use FormSchema\Transformers\Transformer;
+use FormSchema\Transformers\TransformerManager;
 
 /**
  * Represents a form
@@ -103,7 +104,7 @@ class Form {
      */
     public function toArray()
     {
-        return app(Transformer::class)->transformToArray($this);
+        return app(TransformerManager::class)->transformToArray($this);
     }
 
     /**
