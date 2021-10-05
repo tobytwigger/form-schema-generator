@@ -2,6 +2,8 @@
 
 namespace FormSchema\Generator;
 
+use Exception;
+use FormSchema\Fields\AnonymousField;
 use FormSchema\Fields\ArrayField;
 use FormSchema\Fields\CheckboxField;
 use FormSchema\Fields\CheckListField;
@@ -26,33 +28,11 @@ class Field
 {
 
     /**
-     * Create a new FieldGenerator instance.
-     *
-     * @param string $fieldType
-     * @param string $id
-     * @return Field
-     * @throws \Exception
-     */
-    public static function make(string $fieldType, string $id): \FormSchema\Schema\Field
-    {
-        if(is_subclass_of($fieldType, FieldSchema::class)) {
-            $field = new $fieldType;
-        } elseif(count(config('form-schema.components.valid', [])) > 0 && !in_array($fieldType, config('form-schema.components.valid', []))) {
-            throw new \Exception(sprintf('The anonymous field [%s] is not allowed', $fieldType));
-        }
-        else {
-            throw new \Exception(sprintf('The field type must be a class extending FieldSchema or a whitelisted anonymous component, %s given', $fieldType));
-        }
-        $field->setId($id);
-        return $field;
-    }
-
-    /**
      * Create an checkbox field
      *
      * @param string $id
      * @return Field
-     * @throws \Exception
+     * @throws Exception
      */
     public static function checkBox(string $id): CheckboxField
     {
@@ -60,11 +40,33 @@ class Field
     }
 
     /**
+     * Create a new FieldGenerator instance.
+     *
+     * @param string $fieldType
+     * @param string $id
+     * @return Field
+     * @throws Exception
+     */
+    public static function make(string $fieldType, string $id): FieldSchema
+    {
+        $valid = config('form-schema.components.valid', []);
+        if (is_subclass_of($fieldType, FieldSchema::class)) {
+            $field = new $fieldType;
+        } elseif (count($valid) > 0 && in_array($fieldType, $valid)) {
+            $field = new AnonymousField($fieldType);
+        } else {
+            throw new Exception(sprintf('The field type must be a class extending FieldSchema or a whitelisted anonymous component, [%s] given', $fieldType));
+        }
+        $field->setId($id);
+        return $field;
+    }
+
+    /**
      * Create an checklist field
      *
      * @param string $id
      * @return Field
-     * @throws \Exception
+     * @throws Exception
      */
     public static function checkList(string $id): CheckListField
     {
@@ -76,7 +78,7 @@ class Field
      *
      * @param string $id
      * @return Field
-     * @throws \Exception
+     * @throws Exception
      */
     public static function fileUpload(string $id): FileUploadField
     {
@@ -88,7 +90,7 @@ class Field
      *
      * @param string $id
      * @return ArrayField
-     * @throws \Exception
+     * @throws Exception
      */
     public static function array(string $id): ArrayField
     {
@@ -100,7 +102,7 @@ class Field
      *
      * @param string $id
      * @return Field
-     * @throws \Exception
+     * @throws Exception
      */
     public static function radios(string $id): RadiosField
     {
@@ -112,7 +114,7 @@ class Field
      *
      * @param string $id
      * @return Field
-     * @throws \Exception
+     * @throws Exception
      */
     public static function select(string $id): SelectField
     {
@@ -124,7 +126,7 @@ class Field
      *
      * @param string $id
      * @return Field
-     * @throws \Exception
+     * @throws Exception
      */
     public static function switch(string $id): SwitchField
     {
@@ -136,7 +138,7 @@ class Field
      *
      * @param string $id
      * @return Field
-     * @throws \Exception
+     * @throws Exception
      */
     public static function textArea(string $id): TextAreaField
     {
