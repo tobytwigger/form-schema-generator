@@ -9,7 +9,7 @@ use FormSchema\Schema\Group;
 /**
  * @package FormSchema\Transformers
  */
-class PortalUiKitTransformer implements Transformer
+class AtlasUiKitTransformer implements Transformer
 {
 
     /**

@@ -87,39 +87,4 @@ class Group
         return $this;
     }
 
-    /**
-     * Return a schema representation of the group as a json string
-     *
-     * @return false|string
-     */
-    public function __toString()
-    {
-        return $this->toJson();
-    }
-
-    /**
-     * Return a schema representation of the group as a json string
-     *
-     * @return false|string
-     */
-    public function toJson()
-    {
-        return json_encode($this->toArray());
-    }
-
-    /**
-     * Return a schema representation of the group as an array
-     *
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_filter([
-            'title' => $this->getTitle(),
-            'subtitle' => $this->getSubtitle(),
-            'fields' => array_map(fn (Field $field) => $field->toArray(), $this->fields())
-        ]);
-
-    }
-
 }
