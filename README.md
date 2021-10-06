@@ -197,3 +197,11 @@ Please make sure to update tests as appropriate.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+
+## Compile Docs
+
+-`gem install bundle`
+- `bundle install`
+- `bundle exec jekyll serve` to run locally
+- `bundle exec jekyll build` to build

@@ -1,0 +1,122 @@
+{"0": {
+    "doc": "Core Fields",
+    "title": "Core Fields",
+    "content": "Contents . All the core fields and their extra parameters. ",
+    "url": "http://localhost:4000/fields/core-fields",
+    "relUrl": "/fields/core-fields"
+  },"1": {
+    "doc": "Fields",
+    "title": "Extending",
+    "content": "Contents . | Using Fields . | Defining | Core Attributes | Anonymous Fields . | Validity of field | . | Adding a field | . | . ",
+    "url": "http://localhost:4000/fields/index#extending",
+    "relUrl": "/fields/index#extending"
+  },"2": {
+    "doc": "Fields",
+    "title": "Using Fields",
+    "content": "Defining . Use anonymous components or defined fields . Core Attributes . List the core attributes . Anonymous Fields . Validity of field . Adding a field . Extend the generator to use it for making your fields, or pass class name in. ",
+    "url": "http://localhost:4000/fields/index#using-fields",
+    "relUrl": "/fields/index#using-fields"
+  },"3": {
+    "doc": "Fields",
+    "title": "Fields",
+    "content": " ",
+    "url": "http://localhost:4000/fields/index",
+    "relUrl": "/fields/index"
+  },"4": {
+    "doc": "Generating Schemas",
+    "title": "Generating Schemas",
+    "content": "Contents . | Creating a Form | Using a Form | . ",
+    "url": "http://localhost:4000/generating",
+    "relUrl": "/generating"
+  },"5": {
+    "doc": "Generating Schemas",
+    "title": "Creating a Form",
+    "content": ". | How to create a form, the fields it takes. | How to create a group and the fields it takes. | How to create a field. | . ",
+    "url": "http://localhost:4000/generating#creating-a-form",
+    "relUrl": "/generating#creating-a-form"
+  },"6": {
+    "doc": "Generating Schemas",
+    "title": "Using a Form",
+    "content": ". | Generate json or html from the form | Dynamically generating it with form() | . ",
+    "url": "http://localhost:4000/generating#using-a-form",
+    "relUrl": "/generating#using-a-form"
+  },"7": {
+    "doc": "Introduction",
+    "title": "Form Schema Generator",
+    "content": "Contents . | Why use a form schema? | Example Use | Installation | Learn More | . Form Schema Generator is a Laravel-based package that allows you to generate forms directly in PHP. It makes form schema generation simple, and with several third party integrations lets you quickly build up full forms from your controller. ",
+    "url": "http://localhost:4000/index#form-schema-generator",
+    "relUrl": "/index#form-schema-generator"
+  },"8": {
+    "doc": "Introduction",
+    "title": "Why use a form schema?",
+    "content": "It allows you to very quickly scaffold whole functioning pages, even using a drag and drop generator (coming soon). These components can be made once and used for every form. Using a form schema protects your forms against changes in the frontend, making them UI kit agnostic. Whether you use one of our UI kits or your own, you don’t need to change the form generation when changing UI kits. ",
+    "url": "http://localhost:4000/index#why-use-a-form-schema",
+    "relUrl": "/index#why-use-a-form-schema"
+  },"9": {
+    "doc": "Introduction",
+    "title": "Example Use",
+    "content": "$form = Form::make('Contact Details')-&gt;withField( Field::telephone('telephone')-&gt;setLabel('Your phone number')-&gt;setHint('Start the number with your country code')-&gt;setRequired(true), )-&gt;getSchema(); $form-&gt;toArray() === [ 'title' =&gt; 'Contact Details', 'fields' =&gt; [ [ 'id' =&gt; 'telephone', 'type' =&gt; 'telephone', 'label' =&gt; 'Your phone number', 'value' =&gt; null, 'required' =&gt; true, 'hint' =&gt; 'Start the number with your country code' ] ]; . The exact output of the form would depend on your ui kit, and changing this will be covered later. ",
+    "url": "http://localhost:4000/index#example-use",
+    "relUrl": "/index#example-use"
+  },"10": {
+    "doc": "Introduction",
+    "title": "Installation",
+    "content": "To install the form schema generator, run composer require tobytwigger/form-schema-generator. ",
+    "url": "http://localhost:4000/index#installation",
+    "relUrl": "/index#installation"
+  },"11": {
+    "doc": "Introduction",
+    "title": "Learn More",
+    "content": ". | | Using the form generator | Adding Fields | Available Fields | Changing the schema | Integrations | . ",
+    "url": "http://localhost:4000/index#learn-more",
+    "relUrl": "/index#learn-more"
+  },"12": {
+    "doc": "Introduction",
+    "title": "Introduction",
+    "content": " ",
+    "url": "http://localhost:4000/index",
+    "relUrl": "/index"
+  },"13": {
+    "doc": "Atlas UI Kit",
+    "title": "Atlas UI Kit",
+    "content": "Contents . ",
+    "url": "http://localhost:4000/integrations/atlas-ui-kit",
+    "relUrl": "/integrations/atlas-ui-kit"
+  },"14": {
+    "doc": "Integrations",
+    "title": "Integrations",
+    "content": "Contents . | What is an integration, how to make one. Links to them | . ",
+    "url": "http://localhost:4000/integrations/index",
+    "relUrl": "/integrations/index"
+  },"15": {
+    "doc": "Integrations",
+    "title": "What is an integration, how to make one. Links to them",
+    "content": " ",
+    "url": "http://localhost:4000/integrations/index#what-is-an-integration-how-to-make-one-links-to-them",
+    "relUrl": "/integrations/index#what-is-an-integration-how-to-make-one-links-to-them"
+  },"16": {
+    "doc": "Portal UI Kit",
+    "title": "Portal UI Kit",
+    "content": "Contents . ",
+    "url": "http://localhost:4000/integrations/portal-ui-kit",
+    "relUrl": "/integrations/portal-ui-kit"
+  },"17": {
+    "doc": "Transformers",
+    "title": "Transformers",
+    "content": "Contents . | Creating a Transformer | Switching the Transformer | . What do transformers do? . ",
+    "url": "http://localhost:4000/transformers",
+    "relUrl": "/transformers"
+  },"18": {
+    "doc": "Transformers",
+    "title": "Creating a Transformer",
+    "content": "Creating and registering . ",
+    "url": "http://localhost:4000/transformers#creating-a-transformer",
+    "relUrl": "/transformers#creating-a-transformer"
+  },"19": {
+    "doc": "Transformers",
+    "title": "Switching the Transformer",
+    "content": " ",
+    "url": "http://localhost:4000/transformers#switching-the-transformer",
+    "relUrl": "/transformers#switching-the-transformer"
+  }
+}
