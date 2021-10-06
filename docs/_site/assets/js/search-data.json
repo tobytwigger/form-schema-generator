@@ -1,121 +1,199 @@
 {"0": {
     "doc": "Core Fields",
     "title": "Core Fields",
-    "content": "Contents . All the core fields and their extra parameters. ",
+    "content": "Contents . | Text Input | Text Area | Checkbox | Checklist | Number | Radios | Select | Switch | Tag | HTML | File Upload | Email | Array | . ",
     "url": "/fields/core-fields",
     "relUrl": "/fields/core-fields"
   },"1": {
+    "doc": "Core Fields",
+    "title": "Text Input",
+    "content": "A basic text input field. \\FormSchema\\Generator\\Field::textInput(...) . ",
+    "url": "/fields/core-fields#text-input",
+    "relUrl": "/fields/core-fields#text-input"
+  },"2": {
+    "doc": "Core Fields",
+    "title": "Text Area",
+    "content": "A text area field . \\FormSchema\\Generator\\Field::textArea(...) . ",
+    "url": "/fields/core-fields#text-area",
+    "relUrl": "/fields/core-fields#text-area"
+  },"3": {
+    "doc": "Core Fields",
+    "title": "Checkbox",
+    "content": "A single checkbox, that can be on or off . \\FormSchema\\Generator\\Field::checkBox(...) . ",
+    "url": "/fields/core-fields#checkbox",
+    "relUrl": "/fields/core-fields#checkbox"
+  },"4": {
+    "doc": "Core Fields",
+    "title": "Checklist",
+    "content": "A group of checkboxes that may be toggled independently. The result is an array of the selected checkboxes. \\FormSchema\\Generator\\Field::checkList(...) . The checklist has the following functions to set custom attributes . | withOption(id, text) - add a new checkbox, with an id of id, and show the user the text. If one of the selected options, the final array will have an element id. | setOptions([['id' =&gt; 'option_id', 'text' =&gt; 'Option Text], ...]) - overwrite all the options to those passed in. You must pass each of the options in a format ['id' =&gt; 'the id', 'text', =&gt; 'the text']. | . ",
+    "url": "/fields/core-fields#checklist",
+    "relUrl": "/fields/core-fields#checklist"
+  },"5": {
+    "doc": "Core Fields",
+    "title": "Number",
+    "content": "A text input with a type of number . \\FormSchema\\Generator\\Field::number(...) . ",
+    "url": "/fields/core-fields#number",
+    "relUrl": "/fields/core-fields#number"
+  },"6": {
+    "doc": "Core Fields",
+    "title": "Radios",
+    "content": "A group of checkboxes, of which only one can be selected. The result is the selected radio. \\FormSchema\\Generator\\Field::radios(...) . The radio has the following functions to set custom attributes . | withOption(id, text) - add a new radio, with an id of id, and show the user the text. If the selected option, the final value will be id. | setOptions([['id' =&gt; 'option_id', 'text' =&gt; 'Option Text], ...]) - overwrite all the options to those passed in. You must pass each of the options in a format ['id' =&gt; 'the id', 'text', =&gt; 'the text']. | . ",
+    "url": "/fields/core-fields#radios",
+    "relUrl": "/fields/core-fields#radios"
+  },"7": {
+    "doc": "Core Fields",
+    "title": "Select",
+    "content": "A select input, allowing for any one of a number of options to be chosen. \\FormSchema\\Generator\\Field::select(...) . The select has the following functions to set custom attributes . | withOption(id, value, group) - add a new option, with an id of id, and show the user the value. If a group is given, the select will group this option under the header group. | setSelectOptions([['id' =&gt; 'option_id', 'value' =&gt; 'Option Text', 'group' =&gt; 'The group'], ...]) - overwrite all the options to those passed in. You must pass each of the options in a format ['id' =&gt; 'the id', 'text', =&gt; 'the text', 'group' =&gt; 'group'], where group is optional. | setMultiple(bool) - Whether or not the select should support multiple selection. | withNullOption(text, value) - Show a null option on the select, with a value of value (defaults to null if not given) and the text text. | . ",
+    "url": "/fields/core-fields#select",
+    "relUrl": "/fields/core-fields#select"
+  },"8": {
+    "doc": "Core Fields",
+    "title": "Switch",
+    "content": "A switch, which has the same effect as a checkbox. \\FormSchema\\Generator\\Field::switch(...) . The switch has the following functions to set custom attributes . | setOnText('text') - Set the text that is shown when the switch is on to text. | setOffText('text') - Set the text that is shown when the switch is off to text. | . ",
+    "url": "/fields/core-fields#switch",
+    "relUrl": "/fields/core-fields#switch"
+  },"9": {
+    "doc": "Core Fields",
+    "title": "Tag",
+    "content": "A field that allows users to enter multiple strings, or ‘tags’. These are then outputted as an array of the tags. \\FormSchema\\Generator\\Field::tag(...) . ",
+    "url": "/fields/core-fields#tag",
+    "relUrl": "/fields/core-fields#tag"
+  },"10": {
+    "doc": "Core Fields",
+    "title": "HTML",
+    "content": "An integration with TinyMCE to show a WYSIWYG editor. \\FormSchema\\Generator\\Field::switch(...) . The html field has the following functions to set custom attributes . | setApiKey('api-key') - Set the TinyMCE api key to 'api-key'. | . ",
+    "url": "/fields/core-fields#html",
+    "relUrl": "/fields/core-fields#html"
+  },"11": {
+    "doc": "Core Fields",
+    "title": "File Upload",
+    "content": "A field that allows a file upload. \\FormSchema\\Generator\\Field::fileUpload(...) . ",
+    "url": "/fields/core-fields#file-upload",
+    "relUrl": "/fields/core-fields#file-upload"
+  },"12": {
+    "doc": "Core Fields",
+    "title": "Email",
+    "content": "A text field with a type of email. \\FormSchema\\Generator\\Field::email(...) . ",
+    "url": "/fields/core-fields#email",
+    "relUrl": "/fields/core-fields#email"
+  },"13": {
+    "doc": "Core Fields",
+    "title": "Array",
+    "content": "A field that works the same as tags, but shows the options as their own text fields. \\FormSchema\\Generator\\Field::array(...) . The array field has the following functions to set custom attributes . | showRemoveButton(true) - Whether to show a remove button, to allow removing of options. | . ",
+    "url": "/fields/core-fields#array",
+    "relUrl": "/fields/core-fields#array"
+  },"14": {
     "doc": "Fields",
     "title": "Extending",
-    "content": "Contents . | Using Fields . | Defining | Core Attributes | Anonymous Fields . | Validity of field | . | Adding a field | . | . ",
+    "content": "Contents . | Using Fields . | Defining . | Core Attributes . | ID (string) | Label (string|null) | Value (mixed) | Visible (bool) | Disabled (bool) | Required (bool) | Hint (string|null) | Tooltip (string|null) | Error Key (string|null) | Options | . | Class-based fields | Anonymous Fields . | Validity of field | . | . | Adding a field . | Custom Attributes | Using your field | . | . | . ",
     "url": "/fields/index#extending",
     "relUrl": "/fields/index#extending"
-  },"2": {
+  },"15": {
     "doc": "Fields",
     "title": "Using Fields",
-    "content": "Defining . Use anonymous components or defined fields . Core Attributes . List the core attributes . Anonymous Fields . Validity of field . Adding a field . Extend the generator to use it for making your fields, or pass class name in. ",
+    "content": "This page will take you through using fields and anonymous fields to quickly scaffold forms. Defining . A field must have a unique ID to identify the field, which will normally be the key you expect the form to submit the input as. All fields can also contain all the core attributes defined below. Some fields will also have extra attributes that they need. Core Attributes . ID (string) . This is the ID of the field. It must be unique on the page, and is used for passing data back to the server from the form, defining labels and any js, and anything else that needs to reference the field uniquely. It is the only required field to make a form. Label (string|null) . The label is the text associated with the field, and should be a short summary of what the field is. For example, ‘Are you a robot?’, ‘Email Address’ etc. Value (mixed) . This is the value of the field, and will be shown when the form is rendered. Visible (bool) . This defines if the field is visible or not. Disabled (bool) . This defines if the field should be disabled . Required (bool) . This defines if the field is required or not . Hint (string|null) . This is shown below the field, and should add information to help the user fill in the form . Tooltip (string|null) . If given, this should be shown next to the field, but only on hover. It’s a great place to put a much lengthier description, such as in a Learn More link. Error Key (string|null) . The key of the errors that the field should show. This is useful when you manipulate the fields before sending them to the server, so you end up with the field ID and the associated error ID being different. If left blank, the errors shown will be those with an ID matchng the field ID. Options . In addition to the predefined core attributes, and any custom attributes a field may define, you can dynamically add options on the fly. Exactly how these are used depends on your UI Kit, but it can be very useful to add miscellaneous configuration that may be needed by a UI kit without having to edit the field directly or create a new field. To add an option, call $field-&gt;withOption('option-key', 'option-value). You can then check if options are defined, and get all options, with $field-&gt;hasOptions(); and $field-&gt;getOptions(); . Class-based fields . Class-based fields are defined as a class that extends \\FormSchema\\Schema\\Field. These have all the core attributes by default, and may contain additional attributes. If the field is a core field, you can use the \\FormSchema\\Generator\\Field::fieldType('field-id) function, where fieldType is the type of field you want (e.g. radio). If the field is a custom class-based field, just pass in the class name such as \\FormSchema\\Generator\\Field::make(\\My\\Field::class, 'field-id'). You can also create yourself a new generator to access your own fields through a static factory as with core fields - see the Adding a Field section for more. Anonymous Fields . It’s not always convenient to create a new class per field. Often, your UI kit may support many types of fields and you’d rather just reference the type directly. In these cases, you can simply use \\FormSchema\\Generator\\Field::make('fieldType', 'field-id') to create an anonymous field of type fieldType. This field will have access to all the core attributes, and you can use options to add further configuration to the fields. Validity of field . With anonymous fields, you open the risk of typos leading to fields not rendering. To control which anonymous fields can be used, you can define an array of field types in your form-schema config, with the key components.valid. If this array is empty, all anonymous fields are allowed. If you populate it, the generator will validate any new field types against the configuration . Adding a field . No work is needed to add a new anonymous field (other than optionally whitelisting the field type). Class-based fields tend to be more robust and useful though, as you can predefine additional attributes and benefit from IDE typehinting. To create a new field, just define a class in a Fields folder. For this example, we will create a class that provides a captcha. class CaptchaField extends \\FormSchema\\Schema\\Field { protected int $allowedAttempts = 10; public function getAppendedAttributes(): array { return [ 'attempts' =&gt; $this-&gt;allowedAttempts ]; } public function setAllowedAttempts(int $attempts): CaptchaField { $this-&gt;allowedAttempts = $attempts; return $this; } public function getType(): string { return 'captcha'; } } . There are two methods you must always implement, getType and getAppendedAttributes. | The getType function must return a string that represents the type of the field. This will be used in the schema to define the field type. | The getAppendedAttributes function allows you to add custom attributes to your field. | . Custom Attributes . Using getAppendedAttributes allows us to use typehinting for custom attributes specific to a single field. In the above case, we want to define an allowed attempts attribute onto the captcha field. We define getAppendedAttributes, which when called should return all the custom attributes (in our case the allowed attempts), and a value for them. We use a protected property to store the number of allowed attempts. We have also defined a ‘fluent setter’ to make it easy to set the number of allowed attempts. These functions start in set, and then the property name, such as setAllowedAttempts. Passing it the number of attempts saves it to the protected property, so that when getAppendedAttributes is called the newly set value is returned. You don’t need to use additional attributes if you don’t want to, but the option is there if your field does have custom attributes. Using your field . Having created a field, you can then use it in the generator when building up a form. The easiest way to do this is to pass the field name into Field::make. For example, . \\FormSchema\\Generator\\Field::make(\\My\\Captcha\\Field::class, 'field-id'); . You can also create a custom generator. Create a class called Field, extending the \\FormSchema\\Generator\\Field function. For adding the captcha field to this new generator, we would add the following function to it. public static function captcha(string $id): CheckListField { return static::make(\\My\\Captcha\\Field::class, $id); } . Now to generate the field, we use the new field generator . \\My\\Custom\\FieldGenerator::captcha('field-id') . ",
     "url": "/fields/index#using-fields",
     "relUrl": "/fields/index#using-fields"
-  },"3": {
+  },"16": {
     "doc": "Fields",
     "title": "Fields",
     "content": " ",
     "url": "/fields/index",
     "relUrl": "/fields/index"
-  },"4": {
+  },"17": {
     "doc": "Generating Schemas",
     "title": "Generating Schemas",
-    "content": "Contents . | Creating a Form | Using a Form | . ",
+    "content": "Contents . | Creating a Form . | Groups | Fields | . | Using a Form | . A form is fundamentally an instance of \\FormSchema\\Schema\\Form, which itself is a data object that holds all the properties of the form, and in turn the groups and fields in the form. ",
     "url": "/generating",
     "relUrl": "/generating"
-  },"5": {
+  },"18": {
     "doc": "Generating Schemas",
     "title": "Creating a Form",
-    "content": ". | How to create a form, the fields it takes. | How to create a group and the fields it takes. | How to create a field. | . ",
+    "content": "To create a form, you can use the handy Form generator. This will create you a new form instance, and give you a fluent interface to build up the rest of your form. Forms can take three attributes, a title, subtitle and description. All these are optional. Exactly which you should use and what these do depends on the UI kit, for the portal the title and subtitle are shown on the page, with the description being used for screen readers. $form = \\FormSchema\\Generator\\Form::make('Form Title', 'Form Subtitle', 'Form Description'); . Having created your form, you should convert it to a form schema using $form-&gt;getSchema(). This can be done fluently in the same line that creates the form. Groups . Within a form, fields are grouped into groups. These provide a simple way to set up multi-page forms, where each group of fields can be a new tab. Depending on the UI kit, this may also present itself as a sorted form, collapsible groups to show and hide fields etc. A group has a title and a subtitle, which as with a form are both optional fields. $group = \\FormSchema\\Generator\\Group::make('Group Title', 'Group Subtitle'). You can attach a group to a form by using withGroup. \\FormSchema\\Generator\\Form::make()-&gt;withGroup( \\FormSchema\\Generator\\Group::make('Title', 'Subtitle') ); . Fields . Fields will be covered in depth later, including adding custom fields and using anonymous fields. To a basic level, Fields are generated in much the same way as the form and group. ::make can be replaced with ::textInput, ::checkList or any number of other fields. $field = \\FormSchema\\Generator\\Field::textInput('field-id') . You can then chain the field attributes onto this call to build up a more compete field. The available attributes will be covered in the fields documentation. Fields can be added to groups using withField: . \\FormSchema\\Generator\\Form::make()-&gt;withGroup( \\FormSchema\\Generator\\Group::make()-&gt;withField( \\FormSchema\\Generator\\Field::switch('my-component') ) ); . ",
     "url": "/generating#creating-a-form",
     "relUrl": "/generating#creating-a-form"
-  },"6": {
+  },"19": {
     "doc": "Generating Schemas",
     "title": "Using a Form",
-    "content": ". | Generate json or html from the form | Dynamically generating it with form() | . ",
+    "content": "Once you have a form, you can convert it to html or json. Although Laravel will generally take care of this for you if you just return the form, it can be good to explicitly cast the form in some cases. $form-&gt;toArray() or $form-&gt;toJson() will return the form in array or json format. To cast the form to your preferred format, use the form() helper function. This will check in your config for form-schema.default-cast, which is one of either json or array. It will then cast the form to the defined format. ",
     "url": "/generating#using-a-form",
     "relUrl": "/generating#using-a-form"
-  },"7": {
+  },"20": {
     "doc": "Introduction",
     "title": "Form Schema Generator",
     "content": "Contents . | Why use a form schema? | Example Use | Installation | Learn More | . Form Schema Generator is a Laravel-based package that allows you to generate forms directly in PHP. It makes form schema generation simple, and with several third party integrations lets you quickly build up full forms from your controller. ",
     "url": "/index#form-schema-generator",
     "relUrl": "/index#form-schema-generator"
-  },"8": {
+  },"21": {
     "doc": "Introduction",
     "title": "Why use a form schema?",
     "content": "It allows you to very quickly scaffold whole functioning pages, even using a drag and drop generator (coming soon). These components can be made once and used for every form. Using a form schema protects your forms against changes in the frontend, making them UI kit agnostic. Whether you use one of our UI kits or your own, you don’t need to change the form generation when changing UI kits. ",
     "url": "/index#why-use-a-form-schema",
     "relUrl": "/index#why-use-a-form-schema"
-  },"9": {
+  },"22": {
     "doc": "Introduction",
     "title": "Example Use",
     "content": "$form = Form::make('Contact Details')-&gt;withField( Field::telephone('telephone')-&gt;setLabel('Your phone number')-&gt;setHint('Start the number with your country code')-&gt;setRequired(true), )-&gt;getSchema(); $form-&gt;toArray() === [ 'title' =&gt; 'Contact Details', 'fields' =&gt; [ [ 'id' =&gt; 'telephone', 'type' =&gt; 'telephone', 'label' =&gt; 'Your phone number', 'value' =&gt; null, 'required' =&gt; true, 'hint' =&gt; 'Start the number with your country code' ] ] ]; . The exact output of the form would depend on your ui kit, and changing this will be covered later. ",
     "url": "/index#example-use",
     "relUrl": "/index#example-use"
-  },"10": {
+  },"23": {
     "doc": "Introduction",
     "title": "Installation",
     "content": "To install the form schema generator, run composer require tobytwigger/form-schema-generator. ",
     "url": "/index#installation",
     "relUrl": "/index#installation"
-  },"11": {
+  },"24": {
     "doc": "Introduction",
     "title": "Learn More",
     "content": ". | | Using the form generator | Adding Fields | Available Fields | Changing the schema | Integrations | . ",
     "url": "/index#learn-more",
     "relUrl": "/index#learn-more"
-  },"12": {
+  },"25": {
     "doc": "Introduction",
     "title": "Introduction",
     "content": " ",
     "url": "/index",
     "relUrl": "/index"
-  },"13": {
+  },"26": {
     "doc": "Atlas UI Kit",
     "title": "Atlas UI Kit",
     "content": "Contents . ",
     "url": "/integrations/atlas-ui-kit",
     "relUrl": "/integrations/atlas-ui-kit"
-  },"14": {
+  },"27": {
     "doc": "Integrations",
     "title": "Integrations",
-    "content": "Contents . | What is an integration, how to make one. Links to them | . ",
+    "content": "Contents . The form schema generator supports several UI kits out the box, including the portal UI kit and the Atlas UI Kit. An integration consists of a set of fields that can be used by the UI kit, possibly a Field Generator for generating the UI kit fields, and a transformer to convert the fields into the correct schema. ",
     "url": "/integrations/index",
     "relUrl": "/integrations/index"
-  },"15": {
-    "doc": "Integrations",
-    "title": "What is an integration, how to make one. Links to them",
-    "content": " ",
-    "url": "/integrations/index#what-is-an-integration-how-to-make-one-links-to-them",
-    "relUrl": "/integrations/index#what-is-an-integration-how-to-make-one-links-to-them"
-  },"16": {
+  },"28": {
     "doc": "Portal UI Kit",
     "title": "Portal UI Kit",
     "content": "Contents . ",
     "url": "/integrations/portal-ui-kit",
     "relUrl": "/integrations/portal-ui-kit"
-  },"17": {
+  },"29": {
     "doc": "Transformers",
     "title": "Transformers",
-    "content": "Contents . | Creating a Transformer | Switching the Transformer | . What do transformers do? . ",
+    "content": "Contents . | Creating a Transformer | Registering a Transformer | Switching the Transformer | . The form schema generator has been built to be UI kit agnostic, meaning the PHP code you write to generate fields will never have to change. UI kits, however, often have specific requirements on the format of the schema, and therefore we need a way to transform a \\FormSchema\\Schema\\Form into an array or json for a specific UI kit. This is what a transformer does. It is a class with a toArray method, that takes a form instance and should return an array that represents the schema. ",
     "url": "/transformers",
     "relUrl": "/transformers"
-  },"18": {
+  },"30": {
     "doc": "Transformers",
     "title": "Creating a Transformer",
-    "content": "Creating and registering . ",
+    "content": "Your transformer should be a class that implements \\FormSchema\\Transformers\\Transformer. class CustomTransformer implements \\FormSchema\\Transformers\\Transformer { public function transformToArray(Form $form): array { // Here we can use the form getters to transform into any schema // We will map through the groups, then in turn the fields, to get the groups and fields into the schema. return [ 'title' =&gt; $form-&gt;getTitle(), 'subtitle' =&gt; $form-&gt;getSubtitle(), 'description' =&gt; $form-&gt;getDescription(), 'groups' =&gt; array_map(function (Group $group) { return [ 'title' =&gt; $group-&gt;getTitle(), 'subtitle' =&gt; $group-&gt;getSubtitle(), 'fields' =&gt; array_map(function (Field $field) { return [ 'id' =&gt; $field-&gt;getId(), 'type' =&gt; $field-&gt;getType(), 'label' =&gt; $field-&gt;getLabel(), ... ]; }, $group-&gt;fields()) ]; }, $form-&gt;groups()), ]; } public function transformToJson(Form $form): string { return json_encode($this-&gt;transformToJson($form)); } } . ",
     "url": "/transformers#creating-a-transformer",
     "relUrl": "/transformers#creating-a-transformer"
-  },"19": {
+  },"31": {
+    "doc": "Transformers",
+    "title": "Registering a Transformer",
+    "content": "Once you’ve created a transformer for your UI kit, you will need to register it in a service provider. In the boot method, put . app(\\FormSchema\\Transformers\\TransformerManager::class)-&gt;extend( 'my-custom-transformer', fn(\\Illuminate\\Contracts\\Container\\Container $container) =&gt; $container-&gt;make(\\My\\Custom\\Transformer::class) ); . This will make your transformer available with a name my-custom-transformer . ",
+    "url": "/transformers#registering-a-transformer",
+    "relUrl": "/transformers#registering-a-transformer"
+  },"32": {
     "doc": "Transformers",
     "title": "Switching the Transformer",
-    "content": " ",
+    "content": "To select your new transformer, in the config form-schema, change transformer to be my-custom-transformer. Whenever you use $form-&gt;toArray(), or form($form), your new transformer will be used and the new schema returned. ",
     "url": "/transformers#switching-the-transformer",
     "relUrl": "/transformers#switching-the-transformer"
   }
