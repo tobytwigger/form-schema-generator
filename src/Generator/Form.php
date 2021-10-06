@@ -81,7 +81,7 @@ class Form
      */
     public function __toString()
     {
-        return (string) $this->getSchema();
+        return $this->getSchema()->toJson();
     }
 
     /**
