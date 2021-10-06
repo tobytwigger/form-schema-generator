@@ -55,7 +55,7 @@
   },"9": {
     "doc": "Introduction",
     "title": "Example Use",
-    "content": "$form = Form::make('Contact Details')-&gt;withField( Field::telephone('telephone')-&gt;setLabel('Your phone number')-&gt;setHint('Start the number with your country code')-&gt;setRequired(true), )-&gt;getSchema(); $form-&gt;toArray() === [ 'title' =&gt; 'Contact Details', 'fields' =&gt; [ [ 'id' =&gt; 'telephone', 'type' =&gt; 'telephone', 'label' =&gt; 'Your phone number', 'value' =&gt; null, 'required' =&gt; true, 'hint' =&gt; 'Start the number with your country code' ] ]; . The exact output of the form would depend on your ui kit, and changing this will be covered later. ",
+    "content": "$form = Form::make('Contact Details')-&gt;withField( Field::telephone('telephone')-&gt;setLabel('Your phone number')-&gt;setHint('Start the number with your country code')-&gt;setRequired(true), )-&gt;getSchema(); $form-&gt;toArray() === [ 'title' =&gt; 'Contact Details', 'fields' =&gt; [ [ 'id' =&gt; 'telephone', 'type' =&gt; 'telephone', 'label' =&gt; 'Your phone number', 'value' =&gt; null, 'required' =&gt; true, 'hint' =&gt; 'Start the number with your country code' ] ] ]; . The exact output of the form would depend on your ui kit, and changing this will be covered later. ",
     "url": "/index#example-use",
     "relUrl": "/index#example-use"
   },"10": {

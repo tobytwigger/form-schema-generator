@@ -39,13 +39,14 @@ $form = Form::make('Contact Details')->withField(
 $form->toArray() === [
     'title' => 'Contact Details',
     'fields' => [
-    [
-        'id' => 'telephone',
-        'type' => 'telephone',
-        'label' => 'Your phone number',
-        'value' => null,
-        'required' => true,
-        'hint' => 'Start the number with your country code'
+        [
+            'id' => 'telephone',
+            'type' => 'telephone',
+            'label' => 'Your phone number',
+            'value' => null,
+            'required' => true,
+            'hint' => 'Start the number with your country code'
+        ]
     ]
 ];
 ```
