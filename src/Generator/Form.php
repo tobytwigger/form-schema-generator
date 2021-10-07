@@ -81,7 +81,27 @@ class Form
      */
     public function __toString()
     {
-        return (string) $this->getSchema();
+        return $this->toString();
+    }
+
+    public function toString(): string
+    {
+        return $this->getSchema()->toJson();
+    }
+
+    public function toArray(): array
+    {
+        return $this->getSchema()->toArray();
+    }
+
+    public function form(): FormSchema
+    {
+        return $this->getSchema();
+    }
+
+    public function cast()
+    {
+        return form($this->getSchema());
     }
 
     /**
@@ -89,7 +109,7 @@ class Form
      *
      * @return FormSchema
      */
-    public function getSchema()
+    public function getSchema(): FormSchema
     {
         return $this->form;
     }
