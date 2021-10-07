@@ -68,6 +68,8 @@ abstract class Field
      */
     protected ?string $errorKey = null;
 
+    protected array $options = [];
+
     /**
      * @return string
      */
@@ -242,30 +244,19 @@ abstract class Field
      */
     abstract public function getAppendedAttributes(): array;
 
-    /**
-     * Return the field schema as an array.
-     *
-     * This function must take into account all core attributes, as well as additional attributes and field specific attributes
-     *
-     * @return array
-     */
-    public function toArray()
+    public function withOption(string $key, $value): void
     {
-        return array_merge(
-            [
-                'id' => $this->getId(),
-                'type' => $this->getType(),
-                'label' => $this->getLabel(),
-                'value' => $this->getValue(),
-                'visible' => $this->isVisible(),
-                'disabled' => $this->isDisabled(),
-                'required' => $this->isRequired(),
-                'hint' => $this->getHint(),
-                'tooltip' => $this->getTooltip(),
-                'errorKey' => $this->getErrorKey()
-            ],
-            $this->getAppendedAttributes()
-        );
+        $this->options[$key] = $value;
+    }
+
+    public function hasOptions(): bool
+    {
+        return count($this->options) > 0;
+    }
+
+    public function getOptions(): array
+    {
+        return $this->options;
     }
 
 }

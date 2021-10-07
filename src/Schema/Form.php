@@ -2,6 +2,9 @@
 
 namespace FormSchema\Schema;
 
+use FormSchema\Transformers\Transformer;
+use FormSchema\Transformers\TransformerManager;
+
 /**
  * Represents a form
  * @package FormSchema\Schema
@@ -101,12 +104,7 @@ class Form {
      */
     public function toArray()
     {
-        return [
-            'title' => $this->getTitle(),
-            'subtitle' => $this->getSubtitle(),
-            'description' => $this->getDescription(),
-            'groups' => array_map(fn (Group $group) => $group->toArray(), $this->groups()),
-        ];
+        return app(TransformerManager::class)->transformToArray($this);
     }
 
     /**

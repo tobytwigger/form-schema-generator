@@ -20,11 +20,22 @@
     "autoload": {
         "psr-4": {
             "FormSchema\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
             "FormSchema\\Tests\\": "tests/"
+        }
+    },
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FormSchema\\FormSchemaGeneratorServiceProvider"
+            ]
         }
     },
     "scripts": {
