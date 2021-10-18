@@ -248,7 +248,7 @@ abstract class Field
     {
         $this->options = array_merge(
             isset($this->options) ? $this->options : [],
-            $value
+            $options
         );
     }
 
