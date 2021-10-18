@@ -244,9 +244,12 @@ abstract class Field
      */
     abstract public function getAppendedAttributes(): array;
 
-    public function withOption(string $key, $value): void
+    public function withOptions(array $options): void
     {
-        $this->options[$key] = $value;
+        $this->options = array_merge(
+            isset($this->options) ? $this->options : [],
+            $value
+        );
     }
 
     public function hasOptions(): bool
