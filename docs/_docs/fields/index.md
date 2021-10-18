@@ -76,7 +76,7 @@ In addition to the predefined core attributes, and any custom attributes a field
 on the fly. Exactly how these are used depends on your UI Kit, but it can be very useful to add miscellaneous configuration that
 may be needed by a UI kit without having to edit the field directly or create a new field.
 
-To add an option, call `$field->withOption('option-key', 'option-value)`. You can then check if options are defined, and
+To add options, call `$field->withOptions(['option-key' => 'option-value'])`. These will be merged with any previously defined options. You can then check if options are defined, and
 get all options, with `$field->hasOptions();` and `$field->getOptions();`
 
 #### Class-based fields
