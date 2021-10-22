@@ -48,7 +48,7 @@ class PortalUiKitTransformer implements Transformer
         ]);
     }
 
-    private function transformFieldToArray(Field $field): array
+    public function transformFieldToArray(Field $field): array
     {
         return array_merge(
             [
@@ -66,5 +66,10 @@ class PortalUiKitTransformer implements Transformer
             $field->getAppendedAttributes(),
             $field->getOptions()
         );
+    }
+
+    public function transformFieldToJson(Field $field): string
+    {
+        return json_encode($this->transformFieldToArray($field));
     }
 }
