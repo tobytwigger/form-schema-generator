@@ -31,8 +31,20 @@ interface Transformer
      */
     public function transformToJson(Form $form): string;
 
+    /**
+     * Transform a field schema to a json representation
+     *
+     * @param Field $field
+     * @return string
+     */
     public function transformFieldToJson(Field $field): string;
 
+    /**
+     * Transform a field schema to an array representation
+     *
+     * @param Field $field
+     * @return array
+     */
     public function transformFieldToArray(Field $field): array;
 
 }
