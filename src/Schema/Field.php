@@ -80,9 +80,9 @@ abstract class Field
 
     /**
      * @param string $id
-     * @return self
+     * @return static
      */
-    public function setId(string $id): self
+    public function setId(string $id): static
     {
         $this->id = $id;
         return $this;
@@ -103,9 +103,9 @@ abstract class Field
 
     /**
      * @param string $label
-     * @return self
+     * @return static
      */
-    public function setLabel(string $label): self
+    public function setLabel(string $label): static
     {
         $this->label = $label;
         return $this;
@@ -121,7 +121,7 @@ abstract class Field
 
     /**
      * @param mixed $value
-     * @return self
+     * @return static
      */
     public function setValue($value)
     {
@@ -139,9 +139,9 @@ abstract class Field
 
     /**
      * @param bool $visible
-     * @return self
+     * @return static
      */
-    public function setVisible(bool $visible): self
+    public function setVisible(bool $visible): static
     {
         $this->visible = $visible;
         return $this;
@@ -157,9 +157,9 @@ abstract class Field
 
     /**
      * @param bool $disabled
-     * @return self
+     * @return static
      */
-    public function setDisabled(bool $disabled): self
+    public function setDisabled(bool $disabled): static
     {
         $this->disabled = $disabled;
         return $this;
@@ -175,9 +175,9 @@ abstract class Field
 
     /**
      * @param bool $required
-     * @return self
+     * @return static
      */
-    public function setRequired(bool $required): self
+    public function setRequired(bool $required): static
     {
         $this->required = $required;
         return $this;
@@ -193,9 +193,9 @@ abstract class Field
 
     /**
      * @param string $hint
-     * @return self
+     * @return static
      */
-    public function setHint(string $hint): self
+    public function setHint(string $hint): static
     {
         $this->hint = $hint;
         return $this;
@@ -211,9 +211,9 @@ abstract class Field
 
     /**
      * @param string $tooltip
-     * @return self
+     * @return static
      */
-    public function setTooltip(string $tooltip): self
+    public function setTooltip(string $tooltip): static
     {
         $this->tooltip = $tooltip;
         return $this;
@@ -231,7 +231,7 @@ abstract class Field
      * @param string|null $errorKey
      * @return Field
      */
-    public function setErrorKey(?string $errorKey): self
+    public function setErrorKey(?string $errorKey): static
     {
         $this->errorKey = $errorKey;
         return $this;
@@ -244,7 +244,7 @@ abstract class Field
      */
     abstract public function getAppendedAttributes(): array;
 
-    public function withOptions(array $options): self
+    public function withOptions(array $options): static
     {
         $this->options = array_merge(
             isset($this->options) ? $this->options : [],
