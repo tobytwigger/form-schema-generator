@@ -42,9 +42,9 @@ class Field
     /**
      * Create a new FieldGenerator instance.
      *
-     * @template T of class-string<\FormSchema\Schema\Field>
+     * @template T of \FormSchema\Schema\Field
      *
-     * @param T $fieldType
+     * @param class-string<T> $fieldType
      * @param string $id
      * @return T
      * @throws Exception
